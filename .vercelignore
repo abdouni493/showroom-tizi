@@ -38,8 +38,13 @@ yarn-error.log*
 coverage/
 .nyc_output/
 
+# Legacy Express+Prisma server — the app talks to Supabase directly and this
+# folder is never built or served. Excluded so it is not uploaded.
+backend/
+
 # Misc
 .git
 .gitignore
 README.md
 prompt.md
+schema.sql
