@@ -190,17 +190,6 @@ export default function Login() {
                 <span className="text-[0.6rem] text-text-muted uppercase tracking-[0.2em]">{t("login.or")}</span>
                 <div className="flex-1 h-px bg-red-600/20" />
               </motion.div>
-
-              <motion.button
-                type="button"
-                onClick={() => switchMode("register")}
-                className="btn-ghost w-full"
-                {...fieldAnim(0.96)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                <ShieldPlus size={15} /> {t("login.createAdmin")}
-              </motion.button>
             </motion.form>
           ) : (
             <motion.form
