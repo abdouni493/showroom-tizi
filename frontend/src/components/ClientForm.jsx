@@ -58,6 +58,42 @@ export default function ClientForm({ value, onChange, errors = {} }) {
 
       <div>
         <div className="flex items-center gap-3 my-2">
+          <span className="label-caps !mb-0">{t("client.profile")}</span>
+          <div className="flex-1 h-px bg-crimson-500/20" />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <Field label={t("client.type")}>
+            <select className="input" value={c.type || "INDIVIDUAL"} onChange={set("type")}>
+              <option value="INDIVIDUAL">{t("client.individual")}</option>
+              <option value="COMPANY">{t("client.companyType")}</option>
+              <option value="ADMINISTRATION">{t("client.administration")}</option>
+            </select>
+          </Field>
+          <Field label={t("client.source")}>
+            <select className="input" value={c.source || ""} onChange={set("source")}>
+              <option value="">—</option>
+              {["WALK_IN", "PHONE", "WHATSAPP", "MARKETPLACE", "REFERRAL", "FACEBOOK", "OTHER"].map((s) => (
+                <option key={s} value={s}>{t(`pipeline.source.${s}`)}</option>
+              ))}
+            </select>
+          </Field>
+          <Field label={t("client.whatsapp")}>
+            <input className="input" value={c.whatsapp || ""} onChange={set("whatsapp")} />
+          </Field>
+          <Field label={t("client.tin")}>
+            <input className="input" value={c.tin || ""} onChange={set("tin")} />
+          </Field>
+          <Field label={t("client.city")}>
+            <input className="input" value={c.city || ""} onChange={set("city")} />
+          </Field>
+          <Field label={t("client.wilaya")}>
+            <input className="input" value={c.wilaya || ""} onChange={set("wilaya")} />
+          </Field>
+        </div>
+      </div>
+
+      <div>
+        <div className="flex items-center gap-3 my-2">
           <span className="label-caps !mb-0">{t("client.idDoc")}</span>
           <div className="flex-1 h-px bg-crimson-500/20" />
         </div>

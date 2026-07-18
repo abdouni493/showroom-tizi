@@ -20,13 +20,13 @@ export default function Expenses() {
 
   const total = (expenses || []).reduce((a, e) => a + e.amount, 0);
 
-  const openNew = () => { setForm({ name: "", description: "", amount: "", date: toDateInput(new Date()) }); setEditId(null); setSelectedCar(null); };
+  const openNew = () => { setForm({ name: "", description: "", category: "", amount: "", date: toDateInput(new Date()) }); setEditId(null); setSelectedCar(null); };
   const openEdit = (e) => { setForm({ ...e, date: toDateInput(e.date) }); setEditId(e.id); setSelectedCar(e.car || null); };
 
   const save = async () => {
     if (!form.name || !form.amount) { alert("Nom et montant requis"); return; }
     if (tab === "CAR" && !selectedCar && !editId) { alert("Sélectionnez un véhicule"); return; }
-    const payload = { ...form, type: tab, amount: Number(form.amount), carId: tab === "CAR" ? (selectedCar?.id || form.carId) : null };
+    const payload = { ...form, type: tab, amount: Number(form.amount), category: form.category || null, carId: tab === "CAR" ? (selectedCar?.id || form.carId) : null };
     if (editId) await expensesApi.update(editId, payload);
     else await expensesApi.create(payload);
     setForm(null); refetch();
@@ -94,6 +94,8 @@ export default function Expenses() {
               )
             )}
             <Field label="Nom de la dépense" required><input className="input" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></Field>
+            <Field label="Catégorie"><input className="input" list="expense-cats" value={form.category || ""} onChange={(e) => setForm({ ...form, category: e.target.value })} /></Field>
+            <datalist id="expense-cats"><option value="Carburant" /><option value="Entretien" /><option value="Transport" /><option value="Douane" /><option value="Administratif" /><option value="Marketing" /><option value="Loyer" /><option value="Salaires" /></datalist>
             <Field label="Description"><input className="input" value={form.description || ""} onChange={(e) => setForm({ ...form, description: e.target.value })} /></Field>
             <div className="grid grid-cols-2 gap-4">
               <Field label="Montant" required><input className="input" type="number" value={form.amount} onChange={(e) => setForm({ ...form, amount: e.target.value })} /></Field>

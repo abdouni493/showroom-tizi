@@ -3,9 +3,11 @@ import { useStore } from "../store/useStore.js";
 // Permission sections — keys match the sidebar nav keys AND the worker-role
 // permission map. Order is the sidebar display order.
 export const SECTIONS = [
-  "dashboard", "showroom", "purchase", "pos", "sales", "payments",
-  "caisse", "websiteSettings", "websiteReservations", "suppliers", "clients",
-  "workers", "expenses", "reports", "settings",
+  "dashboard", "showroom", "purchase", "imports", "clientOrders", "dossiers",
+  "pos", "pipeline", "sales", "quotes", "invoices", "payments",
+  "caisse", "websiteSettings", "priceLists", "websiteReservations", "suppliers", "clients",
+  "workers", "commissions", "salesTeam", "services", "workshop", "expenses",
+  "profitability", "reports", "customsCalculator", "settings",
 ];
 
 export const ACTIONS = ["view", "create", "edit", "delete", "print"];
@@ -15,17 +17,30 @@ export const ROUTE_SECTION = {
   dashboard: "dashboard",
   showroom: "showroom",
   purchase: "purchase",
+  imports: "imports",
+  "client-orders": "clientOrders",
+  dossiers: "dossiers",
   pos: "pos",
+  pipeline: "pipeline",
   sales: "sales",
+  quotes: "quotes",
+  invoices: "invoices",
   payments: "payments",
   caisse: "caisse",
   "website-settings": "websiteSettings",
+  "price-lists": "priceLists",
   "website-reservations": "websiteReservations",
   suppliers: "suppliers",
   clients: "clients",
   workers: "workers",
+  commissions: "commissions",
+  "sales-team": "salesTeam",
+  services: "services",
+  workshop: "workshop",
   expenses: "expenses",
+  profitability: "profitability",
   reports: "reports",
+  "customs-calculator": "customsCalculator",
   settings: "settings",
 };
 
