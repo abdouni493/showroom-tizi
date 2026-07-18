@@ -4,18 +4,29 @@ export default {
   theme: {
     extend: {
       colors: {
-        black: "#000000",
-        surface: "#0a0a0f",
-        glass: "rgba(15,2,2,0.95)",
-        accent: "#dc2626",
-        "accent-dark": "#991b1b",
-        "text-primary": "#fee2e2",
-        "text-muted": "rgba(248,113,113,0.70)",
-        success: "#10b981",
-        warning: "#f59e0b",
-        info: "#3b82f6",
-        supplier: "#7c3aed",
-        debt: "#fb7185",
+        steel: {
+          950: "#171A20", 900: "#1F2228", 850: "#21252C", 800: "#24282F", 700: "#2E333A",
+          600: "#3A414A", 500: "#3E454E", 400: "#4C545E", 300: "#5D656E", 200: "#78828C", 100: "#9CA8B1",
+        },
+        crimson: {
+          950: "#2E0A08", 900: "#4A100D", 800: "#591816", 700: "#6C2826", 600: "#7F2E2A",
+          500: "#9B302B", 400: "#B4413C", 300: "#C56B66", 200: "#D08A85", 100: "#E2B2AE",
+        },
+        silver: {
+          50: "#F5F6F6", 100: "#E5E6E6", 200: "#D3D5D7", 300: "#C0C2C4", 400: "#A9ACB0",
+          500: "#99A1A9", 600: "#868F98", 700: "#78818A", 800: "#6B747E", 900: "#5D6670",
+        },
+        surface: "#1F2228",
+        glass: "rgba(46,51,58,0.72)",
+        accent: "#9B302B",
+        "accent-dark": "#6C2826",
+        "text-primary": "#E5E6E6",
+        "text-muted": "rgba(153,161,169,0.78)",
+        success: "#3FA07C",
+        warning: "#C89143",
+        info: "#5B87B5",
+        supplier: "#8A7BA8",
+        debt: "#C56B66",
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],

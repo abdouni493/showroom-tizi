@@ -32,9 +32,9 @@ export default function CarDetail() {
 
   if (!car) {
     return (
-      <div className="min-h-screen bg-black">
+      <div className="min-h-screen bg-transparent">
         <WebsiteNav />
-        <p className="text-text-muted text-center py-20">Véhicule introuvable. <Link to="/website" className="text-red-400">Retour</Link></p>
+        <p className="text-text-muted text-center py-20">Véhicule introuvable. <Link to="/website" className="text-crimson-300">Retour</Link></p>
       </div>
     );
   }
@@ -49,7 +49,7 @@ export default function CarDetail() {
   ];
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-transparent">
       <WebsiteNav />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
         <Link to="/website" className="btn-ghost text-xs mb-5"><ArrowLeft size={14} /> Retour</Link>
@@ -60,11 +60,11 @@ export default function CarDetail() {
           </div>
           <div>
             <h1 className="heading text-3xl text-text-primary">{car.brand} {car.model}</h1>
-            <p className="text-3xl font-black text-emerald-400 my-4">{formatAmount(car.price)}</p>
+            <p className="text-3xl font-black text-[#5FBE9A] my-4">{formatAmount(car.price)}</p>
             <div className="grid grid-cols-2 gap-3 mb-6">
               {specs.filter(([, , v]) => v).map(([Icon, label, value]) => (
                 <div key={label} className="glass-card p-3 flex items-center gap-3">
-                  <Icon className="text-red-500" size={18} />
+                  <Icon className="text-crimson-300" size={18} />
                   <div><p className="label-caps">{label}</p><p className="text-sm text-text-primary">{value}</p></div>
                 </div>
               ))}

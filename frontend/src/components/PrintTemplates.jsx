@@ -8,7 +8,7 @@ import { PrintLogo } from "./AnimatedLogo.jsx";
  * page with no large empty gaps.
  * ========================================================================== */
 
-const ACCENT = "#b91c1c"; // crimson brand colour
+const ACCENT = "#8E2F2A"; // crimson brand colour
 const INK = "#111827";
 const MUTE = "#6b7280";
 const LINE = "#d1d5db";

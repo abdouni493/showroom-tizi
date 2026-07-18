@@ -72,8 +72,8 @@ export default function PriceInput({ label, value, onChange, required = false, c
             className={`px-2.5 py-1 rounded-lg border text-[0.65rem] font-bold uppercase tracking-wider transition ${
               price.currency === code
                 ? code === "USD"
-                  ? "border-emerald-500 bg-emerald-600/15 text-emerald-300"
-                  : "border-red-600 bg-red-600/15 text-red-300"
+                  ? "border-[#3FA07C] bg-[#3FA07C]/16 text-[#5FBE9A]"
+                  : "border-crimson-500 bg-crimson-500/16 text-crimson-200"
                 : "border-white/10 text-text-muted hover:border-white/25"
             }`}
           >
@@ -86,7 +86,7 @@ export default function PriceInput({ label, value, onChange, required = false, c
         <div className="space-y-1.5">
           <div className="grid grid-cols-2 gap-2">
             <div className="relative">
-              <span className="absolute left-3 rtl:left-auto rtl:right-3 top-1/2 -translate-y-1/2 text-emerald-400 text-sm font-bold">$</span>
+              <span className="absolute left-3 rtl:left-auto rtl:right-3 top-1/2 -translate-y-1/2 text-[#5FBE9A] text-sm font-bold">$</span>
               <input
                 className="input pl-7 rtl:pl-3 rtl:pr-7"
                 type="number"
@@ -118,7 +118,7 @@ export default function PriceInput({ label, value, onChange, required = false, c
               className="text-sm"
             >
               <span className="text-text-muted">{t("currency.equivalent")} : </span>
-              <span className="font-black text-emerald-400">{formatAmount(converted)}</span>
+              <span className="font-black text-[#5FBE9A]">{formatAmount(converted)}</span>
             </motion.p>
           </AnimatePresence>
         </div>
@@ -153,7 +153,7 @@ export function DualPrice({ dzd, currency, usd, rate, className = "", size = "md
   }
   return (
     <span className={`inline-flex flex-col leading-tight ${className}`}>
-      <span className={`${s.main} text-emerald-400`}>{formatUsd(usd)}</span>
+      <span className={`${s.main} text-[#5FBE9A]`}>{formatUsd(usd)}</span>
       <span className={`${s.sub} text-text-muted`}>
         {formatAmount(dzd)}
         {showRate && rate ? ` · ${formatRate(rate)}` : ""}
@@ -168,7 +168,7 @@ export function DualPriceInline({ dzd, currency, usd, className = "" }) {
   if (!usingUsd) return <span className={className}>{formatAmount(dzd)}</span>;
   return (
     <span className={className}>
-      <span className="text-emerald-400 font-bold">{formatUsd(usd)}</span>
+      <span className="text-[#5FBE9A] font-bold">{formatUsd(usd)}</span>
       <span className="text-text-muted"> · {formatAmount(dzd)}</span>
     </span>
   );

@@ -58,8 +58,8 @@ function LockScreen({ onUnlock }) {
         className="glass-panel w-full max-w-sm p-7 text-center"
       >
         <motion.div
-          className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-red-600 to-red-900 flex items-center justify-center"
-          animate={{ boxShadow: ["0 0 0px rgba(220,38,38,0)", "0 0 28px rgba(220,38,38,0.45)", "0 0 0px rgba(220,38,38,0)"] }}
+          className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-crimson-400 to-crimson-700 flex items-center justify-center"
+          animate={{ boxShadow: ["0 0 0px rgba(155,48,43,0)", "0 0 28px rgba(155,48,43,0.45)", "0 0 0px rgba(155,48,43,0)"] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
           <Lock size={28} className="text-white" />
@@ -77,7 +77,7 @@ function LockScreen({ onUnlock }) {
             placeholder="••••••••"
           />
         </Field>
-        {error && <p className="text-rose-400 text-xs mt-2">{error}</p>}
+        {error && <p className="text-crimson-300 text-xs mt-2">{error}</p>}
 
         <button type="submit" className="btn-primary w-full mt-5 justify-center" disabled={loading}>
           <ShieldCheck size={16} /> {loading ? "..." : t("caisse.unlock")}
@@ -166,17 +166,17 @@ function CaisseContent() {
 
       {/* Totals */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-        <Card className="p-4 flex items-center justify-between" style={{ borderLeft: "3px solid #10b981" }}>
-          <div><p className="label-caps">{t("caisse.totalDeposits")}</p><p className="text-xl font-black text-emerald-400 mt-1">{formatAmount(totalDeposits)}</p></div>
-          <ArrowDownCircle className="text-emerald-400" size={26} />
+        <Card className="p-4 flex items-center justify-between" style={{ borderLeft: "3px solid #3FA07C" }}>
+          <div><p className="label-caps">{t("caisse.totalDeposits")}</p><p className="text-xl font-black text-[#5FBE9A] mt-1">{formatAmount(totalDeposits)}</p></div>
+          <ArrowDownCircle className="text-[#5FBE9A]" size={26} />
         </Card>
-        <Card className="p-4 flex items-center justify-between" style={{ borderLeft: "3px solid #fb7185" }}>
-          <div><p className="label-caps">{t("caisse.totalWithdrawals")}</p><p className="text-xl font-black text-rose-300 mt-1">{formatAmount(totalWithdrawals)}</p></div>
-          <ArrowUpCircle className="text-rose-300" size={26} />
+        <Card className="p-4 flex items-center justify-between" style={{ borderLeft: "3px solid #C56B66" }}>
+          <div><p className="label-caps">{t("caisse.totalWithdrawals")}</p><p className="text-xl font-black text-crimson-200 mt-1">{formatAmount(totalWithdrawals)}</p></div>
+          <ArrowUpCircle className="text-crimson-200" size={26} />
         </Card>
-        <Card className="p-4 flex items-center justify-between" style={{ borderLeft: "3px solid #dc2626" }}>
-          <div><p className="label-caps">{t("caisse.balance")}</p><p className={`text-xl font-black mt-1 ${balance >= 0 ? "text-text-primary" : "text-rose-400"}`}>{formatAmount(balance)}</p></div>
-          <Vault className="text-red-400" size={26} />
+        <Card className="p-4 flex items-center justify-between" style={{ borderLeft: "3px solid #9B302B" }}>
+          <div><p className="label-caps">{t("caisse.balance")}</p><p className={`text-xl font-black mt-1 ${balance >= 0 ? "text-text-primary" : "text-crimson-300"}`}>{formatAmount(balance)}</p></div>
+          <Vault className="text-crimson-300" size={26} />
         </Card>
       </div>
 
@@ -207,7 +207,7 @@ function CaisseContent() {
               </div>
               {isDeposit && x.description && <p className="text-xs text-text-muted truncate mt-1">{x.description}</p>}
               <div className="flex justify-between items-end mt-3">
-                <span className={`text-lg font-black ${isDeposit ? "text-emerald-400" : "text-rose-300"}`}>
+                <span className={`text-lg font-black ${isDeposit ? "text-[#5FBE9A]" : "text-crimson-200"}`}>
                   {isDeposit ? "+" : "−"} {formatAmount(x.amount)}
                 </span>
                 <span className="text-xs text-text-muted">{formatDateTime(x.date)}</span>
@@ -270,7 +270,7 @@ function CaisseContent() {
                 [t("common.datetime")]: formatDateTime(viewItem.date),
                 [t("common.description")]: viewItem.description,
               }).map(([k, v]) => (
-                <div key={k} className="flex justify-between text-sm border-b border-red-600/10 py-1.5"><span className="text-text-muted">{k}</span><span className="text-text-primary text-right">{v || "—"}</span></div>
+                <div key={k} className="flex justify-between text-sm border-b border-silver-500/12 py-1.5"><span className="text-text-muted">{k}</span><span className="text-text-primary text-right">{v || "—"}</span></div>
               ))}
             </div>
             <button className="btn-ghost w-full justify-center" onClick={() => doPrint(viewItem)}><Printer size={14} /> {t("common.print")}</button>

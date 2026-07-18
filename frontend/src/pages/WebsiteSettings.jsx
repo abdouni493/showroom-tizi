@@ -29,7 +29,7 @@ function Offers() {
               <div><p className="heading text-sm text-text-primary">{c.brand} {c.model}</p><p className="text-xs text-text-muted">{c.year}</p></div>
               <Badge color={c.hidden ? "muted" : "success"}>{c.hidden ? "Masqué" : "Visible"}</Badge>
             </div>
-            <p className="text-lg font-black text-emerald-400 mb-3">{formatAmount(c.price)}</p>
+            <p className="text-lg font-black text-[#5FBE9A] mb-3">{formatAmount(c.price)}</p>
             {can("websiteSettings", "edit") && (
               <button className={c.hidden ? "btn-primary w-full text-xs" : "btn-ghost w-full text-xs"} onClick={() => toggle(c.id, c.hidden)}>
                 {c.hidden ? <><Eye size={14} /> Afficher</> : <><EyeOff size={14} /> Masquer</>}
@@ -73,9 +73,9 @@ function SpecialOffers() {
                   <p className="heading text-sm text-text-primary">{o.car?.brand} {o.car?.model}</p>
                   <div className="my-2">
                     <span className="text-sm text-text-muted line-through mr-2">{formatAmount(o.oldPrice)}</span>
-                    <span className="text-lg font-black text-red-400">{formatAmount(o.specialPrice)}</span>
+                    <span className="text-lg font-black text-crimson-300">{formatAmount(o.specialPrice)}</span>
                   </div>
-                  {cd && !cd.expired && <p className="text-xs text-amber-400 mb-2">⏱ {cd.days}j {cd.hours}h {cd.minutes}m restantes</p>}
+                  {cd && !cd.expired && <p className="text-xs text-[#DDAE6A] mb-2">⏱ {cd.days}j {cd.hours}h {cd.minutes}m restantes</p>}
                   <div className="flex items-center justify-between mb-2">
                     {cd?.expired ? <Badge color="muted">Expirée</Badge> : <span />}
                     <Badge color={o.hidden ? "muted" : "success"}>{o.hidden ? "Masquée" : "Visible"}</Badge>
@@ -134,7 +134,7 @@ function Contacts() {
           <Field key={f} label={l}><input className="input" value={c[f] || ""} onChange={(e) => setC({ ...c, [f]: e.target.value })} /></Field>
         ))}
       </div>
-      <div className="flex items-center gap-3 mt-5">{can("websiteSettings", "edit") && <button className="btn-primary" onClick={save}>Enregistrer</button>}{msg && <span className="text-emerald-400 text-sm">{msg}</span>}</div>
+      <div className="flex items-center gap-3 mt-5">{can("websiteSettings", "edit") && <button className="btn-primary" onClick={save}>Enregistrer</button>}{msg && <span className="text-[#5FBE9A] text-sm">{msg}</span>}</div>
     </Card>
   );
 }

@@ -78,7 +78,7 @@ export default function ActionMenu({ items }) {
       <button
         ref={btnRef}
         onClick={toggle}
-        className="p-1.5 rounded-lg text-text-muted hover:text-text-primary hover:bg-white/5 transition"
+        className="p-1.5 rounded-lg text-text-muted hover:text-text-primary hover:bg-silver-500/10 transition"
       >
         <MoreVertical size={18} />
       </button>
@@ -103,10 +103,10 @@ export default function ActionMenu({ items }) {
                     initial={{ opacity: 0, x: -8 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.03 }}
-                    whileHover={{ x: 3, backgroundColor: item.danger ? "rgba(244,63,94,0.12)" : "rgba(220,38,38,0.14)" }}
+                    whileHover={{ x: 3, backgroundColor: item.danger ? "rgba(155,48,43,0.12)" : "rgba(155,48,43,0.14)" }}
                     onClick={(e) => { e.stopPropagation(); setOpen(false); item.onClick(); }}
                     className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-left rtl:text-right ${
-                      item.danger ? "text-rose-400" : "text-text-primary"
+                      item.danger ? "text-crimson-300" : "text-text-primary"
                     }`}
                   >
                     {item.icon && <item.icon size={15} />}

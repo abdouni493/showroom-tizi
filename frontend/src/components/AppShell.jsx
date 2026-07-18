@@ -11,7 +11,7 @@ import { can, ROUTE_SECTION } from "../lib/permissions.js";
 function AccessDenied() {
   return (
     <div className="flex flex-col items-center justify-center py-24 text-center">
-      <ShieldAlert size={48} className="text-red-500 mb-4" />
+      <ShieldAlert size={48} className="text-crimson-300 mb-4" />
       <h2 className="heading text-xl text-text-primary mb-1">Accès refusé</h2>
       <p className="text-text-muted text-sm">Vous n'avez pas la permission de voir cette page.</p>
     </div>
@@ -47,7 +47,7 @@ export default function AppShell() {
   const { settings } = useStore();
 
   return (
-    <div className="flex h-screen overflow-hidden bg-black">
+    <div className="flex h-screen overflow-hidden bg-transparent">
       {/* Desktop sidebar */}
       <div className="hidden lg:block shrink-0">
         <Sidebar />
@@ -58,7 +58,7 @@ export default function AppShell() {
         {mobileOpen && (
           <div className="fixed inset-0 z-40 lg:hidden">
             <motion.div
-              className="absolute inset-0 bg-black/70"
+              className="absolute inset-0 bg-steel-950/72"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -80,7 +80,7 @@ export default function AppShell() {
       {/* Main */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Mobile topbar */}
-        <div className="lg:hidden flex items-center gap-3 p-4 border-b border-red-600/20 bg-black">
+        <div className="lg:hidden flex items-center gap-3 p-4 border-b border-silver-500/14 bg-steel-900/85 backdrop-blur-md">
           <button onClick={() => setMobileOpen(true)} className="text-text-primary">
             <Menu size={24} />
           </button>

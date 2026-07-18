@@ -24,9 +24,9 @@ export const DEFAULT_INSPECTION = {
 };
 
 const SECTIONS = [
-  { key: "security", titleKey: "inspection.security", icon: Shield, color: "text-red-400", border: "border-red-600/30" },
-  { key: "equipment", titleKey: "inspection.equipment", icon: Wrench, color: "text-blue-400", border: "border-blue-500/30" },
-  { key: "comfort", titleKey: "inspection.comfort", icon: Star, color: "text-amber-400", border: "border-amber-500/30" },
+  { key: "security", titleKey: "inspection.security", icon: Shield, color: "text-crimson-300", border: "border-silver-500/24" },
+  { key: "equipment", titleKey: "inspection.equipment", icon: Wrench, color: "text-[#8FB4D9]", border: "border-[#5B87B5]/30" },
+  { key: "comfort", titleKey: "inspection.comfort", icon: Star, color: "text-[#DDAE6A]", border: "border-[#C89143]/30" },
 ];
 
 // `onPersist` (optional) is called with the full updated checklist whenever an
@@ -84,7 +84,7 @@ export default function InspectionChecklist({ value, onChange, onPersist }) {
                     type="button"
                     onClick={() => toggle(key, idx)}
                     className={`w-5 h-5 rounded-md flex items-center justify-center border transition shrink-0 ${
-                      item.active ? "bg-red-600 border-red-600 text-white" : "border-white/20 text-transparent"
+                      item.active ? "bg-crimson-500 border-crimson-500 text-white" : "border-white/20 text-transparent"
                     }`}
                   >
                     <motion.span animate={{ scale: item.active ? 1 : 0 }} transition={{ type: "spring", stiffness: 500, damping: 25 }}>
@@ -97,7 +97,7 @@ export default function InspectionChecklist({ value, onChange, onPersist }) {
                   <button
                     type="button"
                     onClick={() => remove(key, idx)}
-                    className="text-text-muted hover:text-rose-400 opacity-0 group-hover:opacity-100 transition"
+                    className="text-text-muted hover:text-crimson-300 opacity-0 group-hover:opacity-100 transition"
                   >
                     <X size={14} />
                   </button>

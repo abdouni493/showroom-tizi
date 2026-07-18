@@ -25,7 +25,7 @@ function Section({ title, tint = "", children }) {
     <div className="mb-5">
       <div className="flex items-center gap-3 mb-3">
         <h4 className={`heading text-xs ${tint}`}>{title}</h4>
-        <div className="flex-1 h-px bg-red-600/20" />
+        <div className="flex-1 h-px bg-crimson-500/20" />
       </div>
       {children}
     </div>
@@ -73,11 +73,11 @@ function CarDetail({ car }) {
       </Section>
 
       {(car.documents || []).length > 0 && (
-        <Section title={t("car.documentsOfVehicle")} tint="text-blue-400">
+        <Section title={t("car.documentsOfVehicle")} tint="text-[#8FB4D9]">
           <div className="flex flex-wrap gap-2">
             {car.documents.map((d, i) => d.url ? (
-              <a key={i} href={d.url} target="_blank" rel="noreferrer" className="flex items-center gap-2 glass-card !rounded-lg px-3 py-2 hover:border-red-600/60 transition">
-                <FileText size={15} className="text-blue-400" />
+              <a key={i} href={d.url} target="_blank" rel="noreferrer" className="flex items-center gap-2 glass-card !rounded-lg px-3 py-2 hover:border-crimson-500/60 transition">
+                <FileText size={15} className="text-[#8FB4D9]" />
                 <span className="text-xs text-text-primary">{d.type}</span>
               </a>
             ) : (
@@ -91,8 +91,8 @@ function CarDetail({ car }) {
       )}
 
       {supplier && (
-        <Section title={t("showroom.sectionSupplier")} tint="text-violet-400">
-          <div className="glass-card p-3 border border-violet-600/30">
+        <Section title={t("showroom.sectionSupplier")} tint="text-[#AFA0C9]">
+          <div className="glass-card p-3 border border-[#8A7BA8]/30">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
               <DRow label={t("common.name")} value={supplier.fullName} />
               <DRow label={t("common.phone")} value={supplier.phone} />
@@ -106,8 +106,8 @@ function CarDetail({ car }) {
       )}
 
       {client && (
-        <Section title={t("showroom.sectionClient")} tint={car.status === "SOLD" ? "text-emerald-400" : "text-amber-400"}>
-          <div className={`glass-card p-3 border ${car.status === "SOLD" ? "border-emerald-500/30" : "border-amber-500/30"}`}>
+        <Section title={t("showroom.sectionClient")} tint={car.status === "SOLD" ? "text-[#5FBE9A]" : "text-[#DDAE6A]"}>
+          <div className={`glass-card p-3 border ${car.status === "SOLD" ? "border-[#3FA07C]/30" : "border-[#C89143]/30"}`}>
             <div className="flex items-center gap-3 mb-2">
               {client.photo && <img src={client.photo} className="w-12 h-12 rounded-full object-cover" alt="" />}
               <div>
@@ -155,18 +155,18 @@ function CarDetail({ car }) {
           )}
           {sale && <DRow label={t("showroom.tva")} value={sale.tvaEnabled ? `${sale.tvaRate}%` : t("common.no")} />}
           {sale && <DRow label={t("showroom.totalPaid")} value={formatAmount(sale.amountPaid)} />}
-          {sale && <DRow label={t("showroom.remainingDebt")} value={<span className="text-rose-400">{formatAmount(sale.amountRest)}</span>} />}
+          {sale && <DRow label={t("showroom.remainingDebt")} value={<span className="text-crimson-300">{formatAmount(sale.amountRest)}</span>} />}
         </div>
       </Section>
 
-      <Section title={t("showroom.sectionExpenses")} tint="text-amber-400">
-        <p className="text-2xl font-black text-amber-400 mb-2">{formatAmount(totalExpenses)}</p>
+      <Section title={t("showroom.sectionExpenses")} tint="text-[#DDAE6A]">
+        <p className="text-2xl font-black text-[#DDAE6A] mb-2">{formatAmount(totalExpenses)}</p>
         <div className="space-y-1.5 max-h-40 overflow-y-auto">
           {(car.expenses || []).length === 0 && <p className="text-sm text-text-muted">{t("showroom.noExpense")}</p>}
           {(car.expenses || []).map((e) => (
-            <div key={e.id} className="flex justify-between text-sm border-b border-red-600/10 pb-1">
+            <div key={e.id} className="flex justify-between text-sm border-b border-silver-500/12 pb-1">
               <div><span className="text-text-primary">{e.name}</span>{e.description && <span className="text-text-muted"> — {e.description}</span>}</div>
-              <div className="text-right whitespace-nowrap"><span className="text-amber-400">{formatAmount(e.amount)}</span> <span className="text-text-muted text-xs">{formatDate(e.date)}</span></div>
+              <div className="text-right whitespace-nowrap"><span className="text-[#DDAE6A]">{formatAmount(e.amount)}</span> <span className="text-text-muted text-xs">{formatDate(e.date)}</span></div>
             </div>
           ))}
         </div>
@@ -176,9 +176,9 @@ function CarDetail({ car }) {
         <div className="space-y-1.5 max-h-40 overflow-y-auto">
           {sale && sale.payments?.length > 0 ? (
             sale.payments.map((p) => (
-              <div key={p.id} className="flex justify-between text-sm border-b border-red-600/10 pb-1">
+              <div key={p.id} className="flex justify-between text-sm border-b border-silver-500/12 pb-1">
                 <span className="text-text-muted">{formatDate(p.date)} — {p.description}</span>
-                <span className="text-emerald-400">{formatAmount(p.amount)}</span>
+                <span className="text-[#5FBE9A]">{formatAmount(p.amount)}</span>
               </div>
             ))
           ) : (

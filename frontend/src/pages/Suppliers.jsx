@@ -24,7 +24,7 @@ function SupplierForm({ value, onChange }) {
       </div>
       <div className="flex items-center gap-3 my-2">
         <span className="label-caps !mb-0">{t("suppliers.fiscal")}</span>
-        <div className="flex-1 h-px bg-red-600/20" />
+        <div className="flex-1 h-px bg-crimson-500/20" />
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <Field label="NIF"><input className="input" value={value.nif} onChange={set("nif")} /></Field>
@@ -91,7 +91,7 @@ export default function Suppliers() {
             <Card key={s.id} className="p-5">
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-full bg-violet-600/20 text-violet-400 flex items-center justify-center font-black">{initials(s.fullName)}</div>
+                  <div className="w-11 h-11 rounded-full bg-[#8A7BA8]/20 text-[#AFA0C9] flex items-center justify-center font-black">{initials(s.fullName)}</div>
                   <div>
                     <p className="heading text-sm text-text-primary">{s.fullName}</p>
                     <p className="text-xs text-text-muted flex items-center gap-1"><Phone size={11} /> {s.phone}</p>
@@ -109,10 +109,10 @@ export default function Suppliers() {
                 {s.nif && <Badge color="muted">NIF {s.nif}</Badge>}
                 {s.nis && <Badge color="muted">NIS {s.nis}</Badge>}
               </div>
-              <div className="grid grid-cols-3 gap-2 pt-3 border-t border-red-600/15 text-center">
-                <div><p className="text-xs text-violet-400 font-black">{s.stats.totalPurchases}</p><p className="label-caps">{t("suppliers.purchases")}</p></div>
-                <div><p className="text-xs text-emerald-400 font-black">{formatAmount(s.stats.totalPaid)}</p><p className="label-caps">{t("common.paid")}</p></div>
-                <div><p className="text-xs text-rose-400 font-black">{formatAmount(s.stats.totalRest)}</p><p className="label-caps">{t("common.rest")}</p></div>
+              <div className="grid grid-cols-3 gap-2 pt-3 border-t border-silver-500/14 text-center">
+                <div><p className="text-xs text-[#AFA0C9] font-black">{s.stats.totalPurchases}</p><p className="label-caps">{t("suppliers.purchases")}</p></div>
+                <div><p className="text-xs text-[#5FBE9A] font-black">{formatAmount(s.stats.totalPaid)}</p><p className="label-caps">{t("common.paid")}</p></div>
+                <div><p className="text-xs text-crimson-300 font-black">{formatAmount(s.stats.totalRest)}</p><p className="label-caps">{t("common.rest")}</p></div>
               </div>
             </Card>
           ))}
@@ -130,7 +130,7 @@ export default function Suppliers() {
         {viewSupplier && (
           <div className="space-y-2">
             {Object.entries({ [t("common.phone")]: viewSupplier.phone, [t("common.address")]: viewSupplier.address, NIF: viewSupplier.nif, NIS: viewSupplier.nis, Article: viewSupplier.article, RS: viewSupplier.rs }).map(([k, v]) => (
-              <div key={k} className="flex justify-between text-sm border-b border-red-600/10 py-1.5"><span className="text-text-muted">{k}</span><span className="text-text-primary">{v || "—"}</span></div>
+              <div key={k} className="flex justify-between text-sm border-b border-silver-500/12 py-1.5"><span className="text-text-muted">{k}</span><span className="text-text-primary">{v || "—"}</span></div>
             ))}
           </div>
         )}
@@ -141,16 +141,16 @@ export default function Suppliers() {
         {purchasesOf && (
           <>
             <div className="grid grid-cols-3 gap-3 mb-4">
-              <Card className="p-3 text-center"><p className="text-lg font-black text-violet-400">{formatAmount(purchasesOf.stats.totalAmount)}</p><p className="label-caps">{t("suppliers.totalPurchases")}</p></Card>
-              <Card className="p-3 text-center"><p className="text-lg font-black text-emerald-400">{formatAmount(purchasesOf.stats.totalPaid)}</p><p className="label-caps">{t("suppliers.totalPaid")}</p></Card>
-              <Card className="p-3 text-center"><p className="text-lg font-black text-rose-400">{formatAmount(purchasesOf.stats.totalRest)}</p><p className="label-caps">{t("suppliers.totalRest")}</p></Card>
+              <Card className="p-3 text-center"><p className="text-lg font-black text-[#AFA0C9]">{formatAmount(purchasesOf.stats.totalAmount)}</p><p className="label-caps">{t("suppliers.totalPurchases")}</p></Card>
+              <Card className="p-3 text-center"><p className="text-lg font-black text-[#5FBE9A]">{formatAmount(purchasesOf.stats.totalPaid)}</p><p className="label-caps">{t("suppliers.totalPaid")}</p></Card>
+              <Card className="p-3 text-center"><p className="text-lg font-black text-crimson-300">{formatAmount(purchasesOf.stats.totalRest)}</p><p className="label-caps">{t("suppliers.totalRest")}</p></Card>
             </div>
             <div className="space-y-2">
               {purchaseList.map((p) => (
                 <div key={p.id} className="flex items-center gap-3 glass-card p-2">
                   <div className="w-14 h-10 rounded overflow-hidden shrink-0"><CarImage images={p.car?.images} heightClass="h-10" /></div>
                   <div className="flex-1 min-w-0"><p className="text-sm text-text-primary truncate">{p.car?.brand} {p.car?.model}</p><p className="text-xs text-text-muted">{formatDate(p.date)}</p></div>
-                  <div className="text-right text-sm"><p className="text-text-primary">{formatAmount(p.purchasePrice)}</p>{p.amountRest > 0 && <p className="text-xs text-rose-400">{t("common.rest")} {formatAmount(p.amountRest)}</p>}</div>
+                  <div className="text-right text-sm"><p className="text-text-primary">{formatAmount(p.purchasePrice)}</p>{p.amountRest > 0 && <p className="text-xs text-crimson-300">{t("common.rest")} {formatAmount(p.amountRest)}</p>}</div>
                 </div>
               ))}
               {purchaseList.length === 0 && <p className="text-text-muted text-sm text-center py-4">{t("suppliers.noPurchase")}</p>}

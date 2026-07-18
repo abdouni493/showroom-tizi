@@ -73,7 +73,7 @@ export default function SearchSelect({ fetcher, placeholder = "Rechercher...", r
                   setResults([]);
                   setOpen(false);
                 }}
-                className="w-full text-left rtl:text-right p-2.5 rounded-lg hover:bg-red-600/10 transition"
+                className="w-full text-left rtl:text-right p-2.5 rounded-lg hover:bg-silver-500/10 transition"
               >
                 {renderItem(item)}
               </motion.button>

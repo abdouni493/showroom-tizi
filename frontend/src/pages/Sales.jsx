@@ -120,7 +120,7 @@ export default function Sales() {
                 <div className="flex gap-1.5 mb-1"><Badge color={s.saleType === "DEPOSIT" ? "warning" : "success"}>{s.saleType === "DEPOSIT" ? t("sales.deposit") : t("sales.normal")}</Badge>{s.amountRest > 0 ? <Badge color="debt">{t("sales.debt")}</Badge> : <Badge color="success">{t("sales.paid")}</Badge>}{isUsd(s.saleCurrency, s.salePriceUsd) && <Badge color="success">$</Badge>}</div>
                 <div className="flex justify-between items-end text-sm gap-2">
                   <DualPrice dzd={s.totalAfterReduction} currency={s.saleCurrency} usd={saleUsd(s, s.totalAfterReduction)} rate={s.saleExchangeRate} size="sm" className="text-text-primary" />
-                  <span className="shrink-0"><span className="text-emerald-400">{formatAmount(s.amountPaid)}</span>{s.amountRest > 0 && <span className="text-rose-400"> · {formatAmount(s.amountRest)}</span>}</span>
+                  <span className="shrink-0"><span className="text-[#5FBE9A]">{formatAmount(s.amountPaid)}</span>{s.amountRest > 0 && <span className="text-crimson-300"> · {formatAmount(s.amountRest)}</span>}</span>
                 </div>
               </div>
             </Card>
@@ -130,9 +130,9 @@ export default function Sales() {
         <Card className="overflow-x-auto p-0">
           <table className="w-full text-sm border-collapse">
             <thead>
-              <tr className="text-left rtl:text-right bg-red-600/10 border-b border-red-600/30">
+              <tr className="text-left rtl:text-right bg-silver-500/10 border-b border-silver-500/24">
                 {["N°", t("common.client"), t("common.vehicle"), t("common.total"), t("common.paid"), t("common.rest"), t("common.status"), t("common.type"), t("common.date"), ""].map((h, i) => (
-                  <th key={i} className="p-3.5 label-caps !text-red-300/80">{h}</th>
+                  <th key={i} className="p-3.5 label-caps !text-crimson-200/80">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -143,12 +143,12 @@ export default function Sales() {
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.03 }}
-                  className={`border-b border-red-600/10 transition-colors hover:bg-red-600/8 ${i % 2 ? "bg-white/[0.015]" : ""}`}
+                  className={`border-b border-silver-500/12 transition-colors hover:bg-silver-500/8 ${i % 2 ? "bg-white/[0.015]" : ""}`}
                 >
                   <td className="p-3 text-text-muted font-mono text-xs">{s.reference}</td>
                   <td className="p-3">
                     <div className="flex items-center gap-2">
-                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-red-600 to-red-900 text-white flex items-center justify-center text-[0.6rem] font-black shrink-0">{initials(`${s.client?.firstName} ${s.client?.lastName}`)}</div>
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-crimson-400 to-crimson-700 text-white flex items-center justify-center text-[0.6rem] font-black shrink-0">{initials(`${s.client?.firstName} ${s.client?.lastName}`)}</div>
                       <span className="text-text-primary">{s.client?.firstName} {s.client?.lastName}</span>
                     </div>
                   </td>
@@ -159,8 +159,8 @@ export default function Sales() {
                     </div>
                   </td>
                   <td className="p-3 text-text-primary font-bold"><DualPriceInline dzd={s.totalAfterReduction} currency={s.saleCurrency} usd={saleUsd(s, s.totalAfterReduction)} /></td>
-                  <td className="p-3 text-emerald-400">{formatAmount(s.amountPaid)}</td>
-                  <td className="p-3">{s.amountRest > 0 ? <span className="text-rose-400 font-bold">{formatAmount(s.amountRest)}</span> : <span className="text-text-muted">—</span>}</td>
+                  <td className="p-3 text-[#5FBE9A]">{formatAmount(s.amountPaid)}</td>
+                  <td className="p-3">{s.amountRest > 0 ? <span className="text-crimson-300 font-bold">{formatAmount(s.amountRest)}</span> : <span className="text-text-muted">—</span>}</td>
                   <td className="p-3">{s.amountRest > 0 ? <Badge color="debt">{t("sales.debt")}</Badge> : <Badge color="success">{t("sales.paid")}</Badge>}</td>
                   <td className="p-3"><Badge color={s.saleType === "DEPOSIT" ? "warning" : "success"}>{s.saleType === "DEPOSIT" ? t("sales.deposit") : t("sales.normal")}</Badge></td>
                   <td className="p-3 text-text-muted whitespace-nowrap">{formatDate(s.date)}</td>
@@ -195,11 +195,11 @@ export default function Sales() {
                 ),
                 [t("common.paid")]: formatAmount(viewItem.amountPaid),
                 [t("common.rest")]: formatAmount(viewItem.amountRest), [t("common.type")]: viewItem.saleType === "DEPOSIT" ? t("sales.deposit") : t("sales.normal"),
-              }).map(([k, v]) => <div key={k} className="flex justify-between text-sm border-b border-red-600/10 py-1.5"><span className="text-text-muted">{k}</span><span className="text-text-primary text-right">{v || "—"}</span></div>)}
+              }).map(([k, v]) => <div key={k} className="flex justify-between text-sm border-b border-silver-500/12 py-1.5"><span className="text-text-muted">{k}</span><span className="text-text-primary text-right">{v || "—"}</span></div>)}
             </div>
             {viewItem.payments?.length > 0 && (
               <div><h4 className="heading text-xs text-text-primary mb-2">{t("sales.paymentsHistory")}</h4>
-                {viewItem.payments.map((p) => <div key={p.id} className="flex justify-between text-sm border-b border-red-600/10 py-1"><span className="text-text-muted">{formatDate(p.date)} — {p.description}</span><span className="text-emerald-400">{formatAmount(p.amount)}</span></div>)}
+                {viewItem.payments.map((p) => <div key={p.id} className="flex justify-between text-sm border-b border-silver-500/12 py-1"><span className="text-text-muted">{formatDate(p.date)} — {p.description}</span><span className="text-[#5FBE9A]">{formatAmount(p.amount)}</span></div>)}
               </div>
             )}
             <button className="btn-ghost w-full" onClick={() => doPrint(viewItem)}><Printer size={14} /> {t("sales.printInvoice")}</button>
@@ -213,8 +213,8 @@ export default function Sales() {
         {payTarget && (
           <div className="space-y-3">
             <div className="flex justify-between text-sm"><span className="text-text-muted">{t("common.total")}</span><span className="text-text-primary">{formatAmount(payTarget.totalAfterReduction)}</span></div>
-            <div className="flex justify-between text-sm"><span className="text-text-muted">{t("common.paid")}</span><span className="text-emerald-400">{formatAmount(payTarget.amountPaid)}</span></div>
-            <div className="flex justify-between text-sm"><span className="text-text-muted">{t("common.rest")}</span><span className="text-rose-400">{formatAmount(payTarget.amountRest)}</span></div>
+            <div className="flex justify-between text-sm"><span className="text-text-muted">{t("common.paid")}</span><span className="text-[#5FBE9A]">{formatAmount(payTarget.amountPaid)}</span></div>
+            <div className="flex justify-between text-sm"><span className="text-text-muted">{t("common.rest")}</span><span className="text-crimson-300">{formatAmount(payTarget.amountRest)}</span></div>
             <Field label={t("sales.paymentToPay")}><input className="input" type="number" value={payAmount} onChange={(e) => setPayAmount(e.target.value)} /></Field>
           </div>
         )}

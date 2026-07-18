@@ -181,7 +181,7 @@ function PurchaseForm({ onClose, onSaved, editTarget }) {
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm overflow-y-auto p-4"
+      className="fixed inset-0 z-50 bg-steel-950/88 backdrop-blur-sm overflow-y-auto p-4"
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
     >
       <motion.div
@@ -209,14 +209,14 @@ function PurchaseForm({ onClose, onSaved, editTarget }) {
         {step === 0 && (
           <div className="space-y-4">
             <div className="flex gap-3">
-              <button onClick={() => setSourceType("SUPPLIER")} className={`flex-1 p-4 rounded-xl border flex items-center justify-center gap-2 font-bold uppercase text-sm transition ${sourceType === "SUPPLIER" ? "border-violet-500 bg-violet-600/15 text-violet-300" : "border-red-600/30 text-text-muted"}`}><Factory size={18} /> {t("common.supplier")}</button>
-              <button onClick={() => setSourceType("CLIENT")} className={`flex-1 p-4 rounded-xl border flex items-center justify-center gap-2 font-bold uppercase text-sm transition ${sourceType === "CLIENT" ? "border-blue-500 bg-blue-600/15 text-blue-300" : "border-red-600/30 text-text-muted"}`}><User size={18} /> {t("common.client")}</button>
+              <button onClick={() => setSourceType("SUPPLIER")} className={`flex-1 p-4 rounded-xl border flex items-center justify-center gap-2 font-bold uppercase text-sm transition ${sourceType === "SUPPLIER" ? "border-[#8A7BA8] bg-[#8A7BA8]/16 text-[#AFA0C9]" : "border-silver-500/24 text-text-muted"}`}><Factory size={18} /> {t("common.supplier")}</button>
+              <button onClick={() => setSourceType("CLIENT")} className={`flex-1 p-4 rounded-xl border flex items-center justify-center gap-2 font-bold uppercase text-sm transition ${sourceType === "CLIENT" ? "border-[#5B87B5] bg-[#5B87B5]/16 text-[#8FB4D9]" : "border-silver-500/24 text-text-muted"}`}><User size={18} /> {t("common.client")}</button>
             </div>
 
             {sourceType === "SUPPLIER" ? (
               <div>
                 {supplier ? (
-                  <Card className="p-4 border border-violet-500/40">
+                  <Card className="p-4 border border-[#8A7BA8]/40">
                     <div className="flex justify-between items-center">
                       <div><p className="heading text-sm text-text-primary">{supplier.fullName}</p><p className="text-xs text-text-muted">{supplier.phone} · {supplier.address}</p></div>
                       <button className="btn-ghost text-xs py-1.5" onClick={() => setSupplier(null)}>{t("common.change")}</button>
@@ -247,7 +247,7 @@ function PurchaseForm({ onClose, onSaved, editTarget }) {
             ) : (
               <div>
                 {client ? (
-                  <Card className="p-4 border border-blue-500/40">
+                  <Card className="p-4 border border-[#5B87B5]/40">
                     <div className="flex justify-between items-center">
                       <div><p className="heading text-sm text-text-primary">{client.firstName} {client.lastName}</p><p className="text-xs text-text-muted">{client.phonePrimary}</p></div>
                       <button className="btn-ghost text-xs py-1.5" onClick={() => setClient(null)}>{t("common.change")}</button>
@@ -307,17 +307,17 @@ function PurchaseForm({ onClose, onSaved, editTarget }) {
             </div>
 
             {/* Keys & documents */}
-            <div className="flex items-center gap-3 my-2"><span className="label-caps !mb-0">{t("purchase.keysAndDocs")}</span><div className="flex-1 h-px bg-red-600/20" /></div>
+            <div className="flex items-center gap-3 my-2"><span className="label-caps !mb-0">{t("purchase.keysAndDocs")}</span><div className="flex-1 h-px bg-crimson-500/20" /></div>
             <Field label={t("car.keys")} className="max-w-[10rem]">
               <div className="relative">
-                <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 text-red-500/70" size={15} />
+                <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 text-silver-500" size={15} />
                 <input className="input pl-9" type="number" min="0" value={car.keysCount} onChange={setCarField("keysCount")} placeholder="2" />
               </div>
             </Field>
 
             <div className="flex items-center justify-between">
               <span className="label-caps !mb-0">{t("car.availableDocTypes")}</span>
-              <button type="button" className="text-[0.6rem] text-red-400 hover:text-red-300 uppercase tracking-wider font-bold" onClick={() => setShowNewDocType((s) => !s)}>{t("car.newDocType")}</button>
+              <button type="button" className="text-[0.6rem] text-crimson-300 hover:text-crimson-200 uppercase tracking-wider font-bold" onClick={() => setShowNewDocType((s) => !s)}>{t("car.newDocType")}</button>
             </div>
             <p className="text-xs text-text-muted italic -mt-1">{t("car.scanOptional")}</p>
             {showNewDocType && (
@@ -331,9 +331,9 @@ function PurchaseForm({ onClose, onSaved, editTarget }) {
                 const doc = (car.documents || []).find((d) => d.type === dt.name);
                 const checked = !!doc;
                 return (
-                  <div key={dt.id} className={`glass-card !rounded-xl p-2.5 border transition ${checked ? "border-red-600/60" : "border-white/10"}`}>
+                  <div key={dt.id} className={`glass-card !rounded-xl p-2.5 border transition ${checked ? "border-crimson-500/60" : "border-white/10"}`}>
                     <button type="button" onClick={() => toggleDocType(dt.name)} className="flex items-center gap-2 w-full text-left rtl:text-right">
-                      <span className={`w-5 h-5 rounded-md flex items-center justify-center border shrink-0 transition ${checked ? "bg-red-600 border-red-600 text-white" : "border-white/20 text-transparent"}`}>
+                      <span className={`w-5 h-5 rounded-md flex items-center justify-center border shrink-0 transition ${checked ? "bg-crimson-500 border-crimson-500 text-white" : "border-white/20 text-transparent"}`}>
                         <Check size={13} />
                       </span>
                       <span className="text-sm text-text-primary truncate">{dt.name}</span>
@@ -341,13 +341,13 @@ function PurchaseForm({ onClose, onSaved, editTarget }) {
                     {checked && (
                       <div className="flex items-center gap-2 mt-2 pl-7 rtl:pl-0 rtl:pr-7">
                         {doc.url ? (
-                          <a href={doc.url} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-xs text-blue-400 hover:underline flex-1 min-w-0 truncate">
+                          <a href={doc.url} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-xs text-[#8FB4D9] hover:underline flex-1 min-w-0 truncate">
                             <FileText size={12} className="shrink-0" /> {t("car.viewFile")}
                           </a>
                         ) : (
                           <span className="text-xs text-text-muted flex-1 truncate">{t("car.noFileYet")}</span>
                         )}
-                        <label className="text-text-muted hover:text-red-400 cursor-pointer shrink-0">
+                        <label className="text-text-muted hover:text-crimson-300 cursor-pointer shrink-0">
                           {uploadingType === dt.name ? <span className="text-[0.6rem]">...</span> : <Upload size={13} />}
                           <input type="file" accept="image/*" className="hidden" onChange={(e) => scanDocument(dt.name, e.target.files[0])} />
                         </label>
@@ -359,7 +359,7 @@ function PurchaseForm({ onClose, onSaved, editTarget }) {
               {(!docTypes || docTypes.length === 0) && <p className="text-xs text-text-muted italic col-span-full">{t("car.noDocTypes")}</p>}
             </div>
 
-            <div className="flex items-center gap-3 my-2"><span className="label-caps !mb-0">{t("purchase.pricing")}</span><div className="flex-1 h-px bg-red-600/20" /></div>
+            <div className="flex items-center gap-3 my-2"><span className="label-caps !mb-0">{t("purchase.pricing")}</span><div className="flex-1 h-px bg-crimson-500/20" /></div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <PriceInput
                 label={sourceType === "CLIENT" ? t("purchase.clientProposedPrice") : t("showroom.purchasePrice")}
@@ -377,7 +377,7 @@ function PurchaseForm({ onClose, onSaved, editTarget }) {
                 />
               </Field>
             </div>
-            <p className="text-sm">{t("purchase.remaining")} : <span className={rest > 0 ? "text-rose-400 font-black" : "text-emerald-400 font-black"}>{formatAmount(rest)}</span></p>
+            <p className="text-sm">{t("purchase.remaining")} : <span className={rest > 0 ? "text-crimson-300 font-black" : "text-[#5FBE9A] font-black"}>{formatAmount(rest)}</span></p>
 
             <div className="flex justify-between pt-4">
               <button className="btn-ghost" onClick={() => setStep(0)}>← {t("common.back")}</button>
@@ -477,18 +477,18 @@ export default function Purchase() {
       ) : view === "table" ? (
         <Card className="overflow-x-auto">
           <table className="w-full text-sm">
-            <thead><tr className="text-left rtl:text-right border-b border-red-600/20 text-text-muted">
+            <thead><tr className="text-left rtl:text-right border-b border-silver-500/16 text-text-muted">
               {["N°", t("common.vehicle"), t("purchase.source"), t("common.price"), t("common.paid"), t("common.rest"), t("common.date"), ""].map((h, i) => <th key={i} className="p-3 label-caps">{h}</th>)}
             </tr></thead>
             <tbody>
               {purchases.map((p) => (
-                <tr key={p.id} className="border-b border-red-600/10 hover:bg-red-600/5">
+                <tr key={p.id} className="border-b border-silver-500/12 hover:bg-silver-500/6">
                   <td className="p-3 text-text-muted">{p.reference}</td>
                   <td className="p-3 text-text-primary">{p.car?.brand} {p.car?.model} <span className="text-text-muted">{p.car?.plate}</span></td>
                   <td className="p-3"><Badge color={p.sourceType === "SUPPLIER" ? "supplier" : "info"}>{p.sourceType === "SUPPLIER" ? t("common.supplier") : t("common.client")}</Badge></td>
                   <td className="p-3 text-text-primary"><DualPriceInline dzd={p.purchasePrice} currency={p.purchaseCurrency} usd={p.purchasePriceUsd} /></td>
-                  <td className="p-3 text-emerald-400">{formatAmount(p.amountPaid)}</td>
-                  <td className="p-3 text-rose-400">{formatAmount(p.amountRest)}</td>
+                  <td className="p-3 text-[#5FBE9A]">{formatAmount(p.amountPaid)}</td>
+                  <td className="p-3 text-crimson-300">{formatAmount(p.amountRest)}</td>
                   <td className="p-3 text-text-muted">{formatDate(p.date)}</td>
                   <td className="p-3"><ActionMenu items={menuItems(p)} /></td>
                 </tr>
@@ -518,7 +518,7 @@ export default function Purchase() {
                   <span className="text-text-muted shrink-0">{formatDate(p.date)}</span>
                   <span className="text-right rtl:text-left">
                     <DualPrice dzd={p.purchasePrice} currency={p.purchaseCurrency} usd={p.purchasePriceUsd} rate={p.purchaseExchangeRate} size="sm" className="text-text-primary" />
-                    {p.amountRest > 0 && <span className="text-rose-400 block text-xs">· {t("common.rest")} {formatAmount(p.amountRest)}</span>}
+                    {p.amountRest > 0 && <span className="text-crimson-300 block text-xs">· {t("common.rest")} {formatAmount(p.amountRest)}</span>}
                   </span>
                 </div>
               </div>
@@ -558,8 +558,8 @@ export default function Purchase() {
         {payTarget && (
           <div className="space-y-3">
             <div className="flex justify-between text-sm"><span className="text-text-muted">{t("common.total")}</span><DualPrice dzd={payTarget.purchasePrice} currency={payTarget.purchaseCurrency} usd={payTarget.purchasePriceUsd} rate={payTarget.purchaseExchangeRate} size="sm" className="text-text-primary" /></div>
-            <div className="flex justify-between text-sm"><span className="text-text-muted">{t("purchase.alreadyPaid")}</span><span className="text-emerald-400">{formatAmount(payTarget.amountPaid)}</span></div>
-            <div className="flex justify-between text-sm"><span className="text-text-muted">{t("common.rest")}</span><span className="text-rose-400">{formatAmount(payTarget.amountRest)}</span></div>
+            <div className="flex justify-between text-sm"><span className="text-text-muted">{t("purchase.alreadyPaid")}</span><span className="text-[#5FBE9A]">{formatAmount(payTarget.amountPaid)}</span></div>
+            <div className="flex justify-between text-sm"><span className="text-text-muted">{t("common.rest")}</span><span className="text-crimson-300">{formatAmount(payTarget.amountRest)}</span></div>
             <Field label={t("purchase.amountToPay")}><input className="input" type="number" value={payAmount} onChange={(e) => setPayAmount(e.target.value)} /></Field>
           </div>
         )}
@@ -590,15 +590,15 @@ export default function Purchase() {
                   : {}),
                 [t("common.paid")]: formatAmount(viewItem.amountPaid), [t("common.rest")]: formatAmount(viewItem.amountRest),
                 [t("car.keys")]: viewItem.car?.keysCount != null ? viewItem.car.keysCount : "—",
-              }).map(([k, v]) => <div key={k} className="flex justify-between text-sm border-b border-red-600/10 py-1.5"><span className="text-text-muted">{k}</span><span className="text-text-primary text-right rtl:text-left">{v || "—"}</span></div>)}
+              }).map(([k, v]) => <div key={k} className="flex justify-between text-sm border-b border-silver-500/12 py-1.5"><span className="text-text-muted">{k}</span><span className="text-text-primary text-right rtl:text-left">{v || "—"}</span></div>)}
             </div>
             {(viewItem.car?.documents || []).length > 0 && (
               <div>
                 <p className="label-caps mb-2">{t("car.documentsOfVehicle")}</p>
                 <div className="flex flex-wrap gap-2">
                   {viewItem.car.documents.map((d, i) => d.url ? (
-                    <a key={i} href={d.url} target="_blank" rel="noreferrer" className="flex items-center gap-2 glass-card !rounded-lg px-2.5 py-1.5 hover:border-red-600/60">
-                      <FileText size={14} className="text-blue-400" />
+                    <a key={i} href={d.url} target="_blank" rel="noreferrer" className="flex items-center gap-2 glass-card !rounded-lg px-2.5 py-1.5 hover:border-crimson-500/60">
+                      <FileText size={14} className="text-[#8FB4D9]" />
                       <span className="text-xs text-text-primary">{d.type}</span>
                     </a>
                   ) : (

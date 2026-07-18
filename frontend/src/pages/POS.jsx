@@ -106,7 +106,7 @@ function SaleFlow({ car, onClose, onCreated }) {
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm overflow-y-auto p-4"
+      className="fixed inset-0 z-50 bg-steel-950/88 backdrop-blur-sm overflow-y-auto p-4"
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
     >
       <motion.div
@@ -131,7 +131,7 @@ function SaleFlow({ car, onClose, onCreated }) {
 
             {useExisting ? (
               client ? (
-                <Card className="p-4 border border-emerald-500/40">
+                <Card className="p-4 border border-[#3FA07C]/40">
                   <div className="flex justify-between items-center">
                     <div><p className="heading text-sm text-text-primary">{client.firstName} {client.lastName}</p><p className="text-xs text-text-muted">{client.phonePrimary}</p></div>
                     <button className="btn-ghost text-xs py-1.5" onClick={() => setClient(null)}>{t("common.change")}</button>
@@ -207,11 +207,11 @@ function SaleFlow({ car, onClose, onCreated }) {
                 </>
               )}
 
-              <div className="pt-2 border-t border-red-600/15">
+              <div className="pt-2 border-t border-silver-500/14">
                 <div className="flex justify-between items-end text-sm">
                   <span className="text-text-muted">{t("pos.finalTotal")}</span>
                   <span className="text-right rtl:text-left">
-                    <span className="text-2xl font-black text-emerald-400 block">{formatAmount(total)}</span>
+                    <span className="text-2xl font-black text-[#5FBE9A] block">{formatAmount(total)}</span>
                     {/* TVA and reductions apply to the dinar total, so the dollar
                         figure is that total converted back at the sale's rate. */}
                     {saleRate > 0 && (
@@ -223,7 +223,7 @@ function SaleFlow({ car, onClose, onCreated }) {
                 </div>
               </div>
               <Field label={t("pos.amountPaid")}><input className="input" type="number" value={paidTouched ? amountPaid : total} onChange={(e) => { setPaidTouched(true); setAmountPaid(e.target.value); }} /></Field>
-              <p className="text-sm">{t("common.rest")} : <span className={rest > 0 ? "text-rose-400 font-black" : "text-emerald-400 font-black"}>{formatAmount(rest)}</span></p>
+              <p className="text-sm">{t("common.rest")} : <span className={rest > 0 ? "text-crimson-300 font-black" : "text-[#5FBE9A] font-black"}>{formatAmount(rest)}</span></p>
 
               <div className="flex items-center justify-between"><span className="label-caps !mb-0">{t("pos.clientTakesCar")}</span><Toggle checked={clientTakeCar} onChange={setClientTakeCar} /></div>
               <Field label={t("common.datetime")}><input type="datetime-local" className="input" value={date} onChange={(e) => setDate(e.target.value)} /></Field>
@@ -299,14 +299,14 @@ export default function POS() {
                   {/* cars priced in dollars lead with the $ figure, dinars underneath */}
                   {isUsd(car.purchase?.sellingCurrency, car.purchase?.sellingPriceUsd) ? (
                     <div className="mb-2">
-                      <p className="text-xl font-black text-emerald-400">{formatUsd(car.purchase.sellingPriceUsd)}</p>
+                      <p className="text-xl font-black text-[#5FBE9A]">{formatUsd(car.purchase.sellingPriceUsd)}</p>
                       <p className="text-xs text-text-muted">
                         {formatAmount(car.purchase.sellingPrice)}
                         {car.purchase.sellingExchangeRate ? ` · ${formatRate(car.purchase.sellingExchangeRate)}` : ""}
                       </p>
                     </div>
                   ) : (
-                    <p className="text-xl font-black text-emerald-400 mb-2">{formatAmount(car.purchase?.sellingPrice)}</p>
+                    <p className="text-xl font-black text-[#5FBE9A] mb-2">{formatAmount(car.purchase?.sellingPrice)}</p>
                   )}
                   {can("pos", "create") && <button className="btn-primary w-full text-xs" onClick={() => setSelling(car)}>{t("pos.sell")}</button>}
                 </div>

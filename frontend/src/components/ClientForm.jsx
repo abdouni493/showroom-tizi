@@ -59,7 +59,7 @@ export default function ClientForm({ value, onChange, errors = {} }) {
       <div>
         <div className="flex items-center gap-3 my-2">
           <span className="label-caps !mb-0">{t("client.idDoc")}</span>
-          <div className="flex-1 h-px bg-red-600/20" />
+          <div className="flex-1 h-px bg-crimson-500/20" />
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Field label={t("client.docType")}>
@@ -86,7 +86,7 @@ export default function ClientForm({ value, onChange, errors = {} }) {
       <div>
         <div className="flex items-center gap-3 my-2">
           <span className="label-caps !mb-0">{t("client.company")}</span>
-          <div className="flex-1 h-px bg-red-600/20" />
+          <div className="flex-1 h-px bg-crimson-500/20" />
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <Field label="NIF"><input className="input" value={c.nif || ""} onChange={set("nif")} /></Field>

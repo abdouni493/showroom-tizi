@@ -75,7 +75,7 @@ export default function Settings() {
               <motion.span
                 layoutId="settings-tab-indicator"
                 className="absolute inset-0 rounded-full"
-                style={{ background: "linear-gradient(135deg,#dc2626,#991b1b)" }}
+                style={{ background: "linear-gradient(135deg,#9B302B,#6C2826)" }}
                 transition={{ type: "spring", stiffness: 350, damping: 30 }}
               />
             )}
@@ -84,7 +84,7 @@ export default function Settings() {
         ))}
       </div>
 
-      {msg && <div className="mb-4"><Card className="px-4 py-2 border-emerald-500/40"><span className="text-emerald-400 text-sm">{msg}</span></Card></div>}
+      {msg && <div className="mb-4"><Card className="px-4 py-2 border-[#3FA07C]/40"><span className="text-[#5FBE9A] text-sm">{msg}</span></Card></div>}
 
       <AnimatePresence mode="wait">
         <motion.div key={tab} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.2 }}>

@@ -44,7 +44,7 @@ export function PrintChooser() {
     <AnimatePresence>
       {render && (
         <motion.div
-          className="fixed inset-0 z-[70] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 no-print"
+          className="fixed inset-0 z-[70] flex items-center justify-center bg-steel-950/82 backdrop-blur-sm p-4 no-print"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -61,7 +61,7 @@ export function PrintChooser() {
           >
             <div className="flex items-center justify-between mb-1">
               <h3 className="heading text-base text-text-primary flex items-center gap-2">
-                <Printer size={18} className="text-red-400" /> Langue d'impression
+                <Printer size={18} className="text-crimson-300" /> Langue d'impression
               </h3>
               <button onClick={close} className="text-text-muted hover:text-text-primary"><X size={18} /></button>
             </div>
@@ -72,7 +72,7 @@ export function PrintChooser() {
                 onClick={() => choose("fr")}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.96 }}
-                className="flex flex-col items-center justify-center gap-1 rounded-xl py-5 border border-red-600/40 bg-red-600/10 hover:bg-red-600/20 transition"
+                className="flex flex-col items-center justify-center gap-1 rounded-xl py-5 border border-crimson-500/42 bg-silver-500/10 hover:bg-crimson-500/20 transition"
               >
                 <span className="text-2xl">🇫🇷</span>
                 <span className="text-sm font-bold text-text-primary">Français</span>
@@ -81,7 +81,7 @@ export function PrintChooser() {
                 onClick={() => choose("ar")}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.96 }}
-                className="flex flex-col items-center justify-center gap-1 rounded-xl py-5 border border-red-600/40 bg-red-600/10 hover:bg-red-600/20 transition"
+                className="flex flex-col items-center justify-center gap-1 rounded-xl py-5 border border-crimson-500/42 bg-silver-500/10 hover:bg-crimson-500/20 transition"
               >
                 <span className="text-2xl">🇩🇿</span>
                 <span className="text-sm font-bold text-text-primary">العربية</span>

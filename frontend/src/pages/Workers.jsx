@@ -163,7 +163,7 @@ export default function Workers() {
             <Card key={w.id} className="p-5">
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-red-600 to-red-900 text-white flex items-center justify-center font-black">{initials(w.fullName)}</div>
+                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-crimson-400 to-crimson-700 text-white flex items-center justify-center font-black">{initials(w.fullName)}</div>
                   <div>
                     <p className="heading text-sm text-text-primary">{w.fullName}</p>
                     <p className="text-xs text-text-muted">{w.role?.name || "Sans rôle"}</p>
@@ -180,9 +180,9 @@ export default function Workers() {
                 ]} />
               </div>
               <p className="text-xs text-text-muted flex items-center gap-1 mb-2"><Phone size={11} /> {w.phone}</p>
-              <div className="flex justify-between items-center pt-3 border-t border-red-600/15">
+              <div className="flex justify-between items-center pt-3 border-t border-silver-500/14">
                 <Badge color={w.paymentType === "NONE" ? "muted" : "success"}>{PAY_LABELS[w.paymentType]}</Badge>
-                {w.paymentAmount > 0 && <span className="text-sm text-emerald-400 font-bold">{formatAmount(w.paymentAmount)}</span>}
+                {w.paymentAmount > 0 && <span className="text-sm text-[#5FBE9A] font-bold">{formatAmount(w.paymentAmount)}</span>}
               </div>
               <p className="text-xs text-text-muted mt-2">Depuis le {formatDate(w.startDate)}</p>
             </Card>
@@ -203,7 +203,7 @@ export default function Workers() {
               <div>
                 <div className="flex items-center justify-between">
                   <span className="label-caps">Rôle</span>
-                  <button type="button" className="text-[0.6rem] text-red-400 hover:text-red-300 uppercase tracking-wider font-bold" onClick={() => setShowNewRole((s) => !s)}>+ Créer un rôle</button>
+                  <button type="button" className="text-[0.6rem] text-crimson-300 hover:text-crimson-200 uppercase tracking-wider font-bold" onClick={() => setShowNewRole((s) => !s)}>+ Créer un rôle</button>
                 </div>
                 <select className="input" value={form.roleId || ""} onChange={(e) => setForm({ ...form, roleId: e.target.value })}>
                   <option value="">—</option>
@@ -218,7 +218,7 @@ export default function Workers() {
               </div>
               <Field label="Date de début"><input type="date" className="input" value={form.startDate || ""} onChange={(e) => setForm({ ...form, startDate: e.target.value })} /></Field>
             </div>
-            <div className="flex items-center gap-3 my-2"><span className="label-caps !mb-0">Paiement</span><div className="flex-1 h-px bg-red-600/20" /></div>
+            <div className="flex items-center gap-3 my-2"><span className="label-caps !mb-0">Paiement</span><div className="flex-1 h-px bg-crimson-500/20" /></div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Field label="Type"><select className="input" value={form.paymentType} onChange={(e) => setForm({ ...form, paymentType: e.target.value })}><option value="NONE">Aucun</option><option value="MONTHLY">Mensuel</option><option value="DAILY">Journalier</option></select></Field>
               {form.paymentType !== "NONE" && <Field label="Montant (DA)"><input className="input" type="number" value={form.paymentAmount || ""} onChange={(e) => setForm({ ...form, paymentAmount: e.target.value })} /></Field>}
@@ -240,27 +240,27 @@ export default function Workers() {
         {view && (
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-x-6">
-              {Object.entries({ Téléphone: view.phone, "N° CIN": view.idCardNumber, Rôle: view.role?.name, Paiement: PAY_LABELS[view.paymentType], Montant: view.paymentAmount && formatAmount(view.paymentAmount), Début: formatDate(view.startDate) }).map(([k, v]) => <div key={k} className="flex justify-between text-sm border-b border-red-600/10 py-1.5"><span className="text-text-muted">{k}</span><span className="text-text-primary">{v || "—"}</span></div>)}
+              {Object.entries({ Téléphone: view.phone, "N° CIN": view.idCardNumber, Rôle: view.role?.name, Paiement: PAY_LABELS[view.paymentType], Montant: view.paymentAmount && formatAmount(view.paymentAmount), Début: formatDate(view.startDate) }).map(([k, v]) => <div key={k} className="flex justify-between text-sm border-b border-silver-500/12 py-1.5"><span className="text-text-muted">{k}</span><span className="text-text-primary">{v || "—"}</span></div>)}
             </div>
             <div className="grid grid-cols-3 gap-3">
-              <Card className="p-3 text-center"><p className="text-base font-black text-amber-400">{formatAmount((view.advances || []).filter((x) => !x.isPaid).reduce((a, x) => a + (x.amount || 0), 0))}</p><p className="label-caps">Acomptes</p></Card>
-              <Card className="p-3 text-center"><p className="text-base font-black text-rose-400">{formatAmount((view.absences || []).filter((x) => !x.isPaid).reduce((a, x) => a + (x.cost || 0), 0))}</p><p className="label-caps">Absences</p></Card>
-              <Card className="p-3 text-center"><p className="text-base font-black text-emerald-400">{formatAmount((view.payments || []).reduce((a, x) => a + (x.amount || 0), 0))}</p><p className="label-caps">Payé</p></Card>
+              <Card className="p-3 text-center"><p className="text-base font-black text-[#DDAE6A]">{formatAmount((view.advances || []).filter((x) => !x.isPaid).reduce((a, x) => a + (x.amount || 0), 0))}</p><p className="label-caps">Acomptes</p></Card>
+              <Card className="p-3 text-center"><p className="text-base font-black text-crimson-300">{formatAmount((view.absences || []).filter((x) => !x.isPaid).reduce((a, x) => a + (x.cost || 0), 0))}</p><p className="label-caps">Absences</p></Card>
+              <Card className="p-3 text-center"><p className="text-base font-black text-[#5FBE9A]">{formatAmount((view.payments || []).reduce((a, x) => a + (x.amount || 0), 0))}</p><p className="label-caps">Payé</p></Card>
             </div>
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <h4 className="heading text-sm text-text-primary">Acomptes en attente</h4>
-                {can("workers", "edit") && <button type="button" className="text-[0.7rem] text-red-400 hover:text-red-300 uppercase tracking-wider font-bold" onClick={() => openTransactionEditor("advance", view)}>+ Ajouter</button>}
+                {can("workers", "edit") && <button type="button" className="text-[0.7rem] text-crimson-300 hover:text-crimson-200 uppercase tracking-wider font-bold" onClick={() => openTransactionEditor("advance", view)}>+ Ajouter</button>}
               </div>
               {payrollCalc(view).advances.length > 0 ? payrollCalc(view).advances.map((item) => (
-                <div key={item.id} className="flex items-center justify-between rounded-lg border border-red-600/10 bg-black/20 p-2.5">
+                <div key={item.id} className="flex items-center justify-between rounded-lg border border-silver-500/12 bg-steel-950/28 p-2.5">
                   <div>
                     <p className="text-sm font-semibold text-text-primary">{formatAmount(item.amount || 0)}</p>
                     <p className="text-xs text-text-muted">{formatDate(item.date)}{item.description ? ` • ${item.description}` : ""}</p>
                   </div>
                   <div className="flex items-center gap-2">
-                    {can("workers", "edit") && <button type="button" className="rounded-full p-1.5 text-text-muted hover:bg-red-600/10 hover:text-red-400" onClick={() => openTransactionEditor("advance", view, item)}><Pencil size={14} /></button>}
-                    {can("workers", "delete") && <button type="button" className="rounded-full p-1.5 text-text-muted hover:bg-red-600/10 hover:text-red-400" onClick={() => requestDelete("advance", item.id)}><Trash2 size={14} /></button>}
+                    {can("workers", "edit") && <button type="button" className="rounded-full p-1.5 text-text-muted hover:bg-silver-500/10 hover:text-crimson-300" onClick={() => openTransactionEditor("advance", view, item)}><Pencil size={14} /></button>}
+                    {can("workers", "delete") && <button type="button" className="rounded-full p-1.5 text-text-muted hover:bg-silver-500/10 hover:text-crimson-300" onClick={() => requestDelete("advance", item.id)}><Trash2 size={14} /></button>}
                   </div>
                 </div>
               )) : <p className="text-sm text-text-muted">Aucun acompte en attente.</p>}
@@ -268,17 +268,17 @@ export default function Workers() {
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <h4 className="heading text-sm text-text-primary">Absences en attente</h4>
-                {can("workers", "edit") && <button type="button" className="text-[0.7rem] text-red-400 hover:text-red-300 uppercase tracking-wider font-bold" onClick={() => openTransactionEditor("absence", view)}>+ Ajouter</button>}
+                {can("workers", "edit") && <button type="button" className="text-[0.7rem] text-crimson-300 hover:text-crimson-200 uppercase tracking-wider font-bold" onClick={() => openTransactionEditor("absence", view)}>+ Ajouter</button>}
               </div>
               {payrollCalc(view).absences.length > 0 ? payrollCalc(view).absences.map((item) => (
-                <div key={item.id} className="flex items-center justify-between rounded-lg border border-red-600/10 bg-black/20 p-2.5">
+                <div key={item.id} className="flex items-center justify-between rounded-lg border border-silver-500/12 bg-steel-950/28 p-2.5">
                   <div>
                     <p className="text-sm font-semibold text-text-primary">{formatAmount(item.cost || 0)}</p>
                     <p className="text-xs text-text-muted">{formatDate(item.date)}{item.description ? ` • ${item.description}` : ""}</p>
                   </div>
                   <div className="flex items-center gap-2">
-                    {can("workers", "edit") && <button type="button" className="rounded-full p-1.5 text-text-muted hover:bg-red-600/10 hover:text-red-400" onClick={() => openTransactionEditor("absence", view, item)}><Pencil size={14} /></button>}
-                    {can("workers", "delete") && <button type="button" className="rounded-full p-1.5 text-text-muted hover:bg-red-600/10 hover:text-red-400" onClick={() => requestDelete("absence", item.id)}><Trash2 size={14} /></button>}
+                    {can("workers", "edit") && <button type="button" className="rounded-full p-1.5 text-text-muted hover:bg-silver-500/10 hover:text-crimson-300" onClick={() => openTransactionEditor("absence", view, item)}><Pencil size={14} /></button>}
+                    {can("workers", "delete") && <button type="button" className="rounded-full p-1.5 text-text-muted hover:bg-silver-500/10 hover:text-crimson-300" onClick={() => requestDelete("absence", item.id)}><Trash2 size={14} /></button>}
                   </div>
                 </div>
               )) : <p className="text-sm text-text-muted">Aucune absence en attente.</p>}
@@ -295,7 +295,7 @@ export default function Workers() {
             {SECTIONS.map((s) => {
               const enabled = perms[s] && Object.values(perms[s]).some(Boolean);
               return (
-                <button key={s} onClick={() => setActiveSection(s)} className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm transition ${activeSection === s ? "bg-red-600/15 text-text-primary" : "text-text-muted hover:bg-red-600/8"}`}>
+                <button key={s} onClick={() => setActiveSection(s)} className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm transition ${activeSection === s ? "bg-crimson-500/16 text-text-primary" : "text-text-muted hover:bg-silver-500/8"}`}>
                   <span>{SECTION_LABELS[s]}</span>
                   {enabled && <Badge color="success">Actif</Badge>}
                 </button>
@@ -309,7 +309,7 @@ export default function Workers() {
                 <div className="space-y-2">
                   {ACTIONS.map((a) => (
                     <label key={a} className="flex items-center gap-2.5 cursor-pointer">
-                      <button type="button" onClick={() => togglePerm(activeSection, a)} className={`w-5 h-5 rounded-md flex items-center justify-center border ${perms[activeSection]?.[a] ? "bg-red-600 border-red-600" : "border-white/20"}`}>{perms[activeSection]?.[a] && <span className="text-white text-xs">✓</span>}</button>
+                      <button type="button" onClick={() => togglePerm(activeSection, a)} className={`w-5 h-5 rounded-md flex items-center justify-center border ${perms[activeSection]?.[a] ? "bg-crimson-500 border-crimson-500" : "border-white/20"}`}>{perms[activeSection]?.[a] && <span className="text-white text-xs">✓</span>}</button>
                       <span className="text-sm text-text-primary">{ACTION_LABELS[a]}</span>
                     </label>
                   ))}
@@ -331,31 +331,31 @@ export default function Workers() {
             <div className="space-y-3">
               <Card className="p-3 space-y-1.5 text-sm">
                 <div className="flex justify-between"><span className="text-text-muted">Salaire de base</span><span className="text-text-primary">{formatAmount(calc.base)}</span></div>
-                <div className="flex justify-between"><span className="text-text-muted">Absences en attente</span><span className="text-rose-400">{calc.absenceCount} • {formatAmount(calc.absenceTotal)}</span></div>
-                <div className="flex justify-between"><span className="text-text-muted">Acomptes en attente</span><span className="text-amber-400">{calc.advanceCount} • {formatAmount(calc.advanceTotal)}</span></div>
-                <div className="flex justify-between pt-1.5 border-t border-red-600/15 font-black"><span className="text-text-primary">Net à payer</span><span className="text-emerald-400">{formatAmount(calc.net)}</span></div>
+                <div className="flex justify-between"><span className="text-text-muted">Absences en attente</span><span className="text-crimson-300">{calc.absenceCount} • {formatAmount(calc.absenceTotal)}</span></div>
+                <div className="flex justify-between"><span className="text-text-muted">Acomptes en attente</span><span className="text-[#DDAE6A]">{calc.advanceCount} • {formatAmount(calc.advanceTotal)}</span></div>
+                <div className="flex justify-between pt-1.5 border-t border-silver-500/14 font-black"><span className="text-text-primary">Net à payer</span><span className="text-[#5FBE9A]">{formatAmount(calc.net)}</span></div>
               </Card>
               {calc.absences.length > 0 && (
-                <div className="rounded-lg border border-red-600/10 bg-black/20 p-3">
+                <div className="rounded-lg border border-silver-500/12 bg-steel-950/28 p-3">
                   <p className="text-xs uppercase tracking-[0.2em] text-text-muted mb-2">Détails absences</p>
                   <div className="space-y-2">
                     {calc.absences.map((item) => (
                       <div key={item.id} className="flex items-center justify-between text-sm">
                         <span className="text-text-primary">{formatDate(item.date)}{item.description ? ` • ${item.description}` : ""}</span>
-                        <span className="text-rose-400">{formatAmount(item.cost || 0)}</span>
+                        <span className="text-crimson-300">{formatAmount(item.cost || 0)}</span>
                       </div>
                     ))}
                   </div>
                 </div>
               )}
               {calc.advances.length > 0 && (
-                <div className="rounded-lg border border-red-600/10 bg-black/20 p-3">
+                <div className="rounded-lg border border-silver-500/12 bg-steel-950/28 p-3">
                   <p className="text-xs uppercase tracking-[0.2em] text-text-muted mb-2">Détails acomptes</p>
                   <div className="space-y-2">
                     {calc.advances.map((item) => (
                       <div key={item.id} className="flex items-center justify-between text-sm">
                         <span className="text-text-primary">{formatDate(item.date)}{item.description ? ` • ${item.description}` : ""}</span>
-                        <span className="text-amber-400">{formatAmount(item.amount || 0)}</span>
+                        <span className="text-[#DDAE6A]">{formatAmount(item.amount || 0)}</span>
                       </div>
                     ))}
                   </div>

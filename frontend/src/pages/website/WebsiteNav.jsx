@@ -7,8 +7,8 @@ import AnimatedLogo from "../../components/AnimatedLogo.jsx";
 export default function WebsiteNav() {
   const { settings } = useStore();
   const { scrollY } = useScroll();
-  const navBg = useTransform(scrollY, [0, 80], ["rgba(0,0,0,0)", "rgba(0,0,0,0.95)"]);
-  const navBorder = useTransform(scrollY, [0, 80], ["rgba(220,38,38,0)", "rgba(220,38,38,0.2)"]);
+  const navBg = useTransform(scrollY, [0, 80], ["rgba(31,34,40,0)", "rgba(31,34,40,0.92)"]);
+  const navBorder = useTransform(scrollY, [0, 80], ["rgba(153,161,169,0)", "rgba(153,161,169,0.2)"]);
 
   return (
     <motion.nav

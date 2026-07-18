@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { Car } from "lucide-react";
 
-// Dark-red → dark gradient used for the animated frame: a red ember that sweeps
-// around the ring and fades into near-black as it rotates.
+// Red-and-silver alternating metal ring — mirrors the logo, which alternates
+// brushed chrome and oxidised crimson as it sweeps around.
 const RING =
-  "conic-gradient(from 0deg, #dc2626, #991b1b, #5b0f0f, #2a0808, #140303, #2a0808, #5b0f0f, #991b1b, #dc2626)";
+  "conic-gradient(from 0deg, #C0C2C4, #99A1A9, #6B747E, #6C2826, #9B302B, #B4413C, #9B302B, #6C2826, #6B747E, #99A1A9, #C0C2C4)";
 
 /**
  * Shows a showroom logo in FULL (object-contain — never cropped) inside an
@@ -42,7 +42,7 @@ export default function AnimatedLogo({ src, size = 64, rounded = "rounded-2xl", 
 
       {/* Inner well holding the full logo */}
       <div
-        className={`absolute ${rounded} bg-[#0b0307] flex items-center justify-center overflow-hidden`}
+        className={`absolute ${rounded} bg-[#1B1F25] flex items-center justify-center overflow-hidden`}
         style={{ inset: pad }}
       >
         {src ? (
@@ -53,7 +53,7 @@ export default function AnimatedLogo({ src, size = 64, rounded = "rounded-2xl", 
             style={{ padding: imgPad, boxSizing: "border-box" }}
           />
         ) : (
-          <Car className="text-red-400" style={{ width: size * 0.45, height: size * 0.45 }} />
+          <Car className="text-silver-400" style={{ width: size * 0.45, height: size * 0.45 }} />
         )}
       </div>
     </div>

@@ -36,7 +36,7 @@ function ProtectedRoute({ children }) {
 
   if (!authChecked) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-black">
+      <div className="min-h-screen flex items-center justify-center bg-transparent">
         <div className="text-text-muted heading">Chargement...</div>
       </div>
     );

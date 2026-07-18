@@ -11,7 +11,7 @@ export function CarImage({ images = [], className = "", heightClass = "h-44" }) 
   const go = (delta) => setState(([i]) => [(i + delta + images.length) % images.length, delta]);
 
   return (
-    <div className={`relative ${heightClass} bg-gradient-to-br from-red-950/40 to-black overflow-hidden group ${className}`}>
+    <div className={`relative ${heightClass} bg-gradient-to-br from-crimson-950/50 to-steel-950 overflow-hidden group ${className}`}>
       {hasImages ? (
         <AnimatePresence initial={false} custom={dir} mode="popLayout">
           <motion.img
@@ -29,24 +29,24 @@ export function CarImage({ images = [], className = "", heightClass = "h-44" }) 
       ) : (
         <div
           className="w-full h-full flex items-center justify-center"
-          style={{ backgroundImage: "repeating-linear-gradient(45deg, rgba(220,38,38,0.05) 0px, rgba(220,38,38,0.05) 1px, transparent 1px, transparent 10px)" }}
+          style={{ backgroundImage: "repeating-linear-gradient(45deg, rgba(155,48,43,0.05) 0px, rgba(155,48,43,0.05) 1px, transparent 1px, transparent 10px)" }}
         >
           <motion.div animate={{ opacity: [0.3, 0.5, 0.3] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}>
-            <Car size={48} className="text-red-600/40" />
+            <Car size={48} className="text-crimson-500/50" />
           </motion.div>
         </div>
       )}
       {hasImages && images.length > 1 && (
         <>
-          <button onClick={(e) => { e.stopPropagation(); go(-1); }} className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/60 rounded-full p-1 text-white">
+          <button onClick={(e) => { e.stopPropagation(); go(-1); }} className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-steel-950/60 rounded-full p-1 text-white">
             <ChevronLeft size={16} />
           </button>
-          <button onClick={(e) => { e.stopPropagation(); go(1); }} className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-black/60 rounded-full p-1 text-white">
+          <button onClick={(e) => { e.stopPropagation(); go(1); }} className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-steel-950/60 rounded-full p-1 text-white">
             <ChevronRight size={16} />
           </button>
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 flex gap-1">
             {images.map((_, i) => (
-              <span key={i} className={`w-1.5 h-1.5 rounded-full ${i === idx ? "bg-red-500" : "bg-white/40"}`} />
+              <span key={i} className={`w-1.5 h-1.5 rounded-full ${i === idx ? "bg-crimson-400" : "bg-white/40"}`} />
             ))}
           </div>
         </>
@@ -67,7 +67,7 @@ export default function CarCard({ car, onClick, action, actionLabel, price, oldP
   return (
     <motion.div
       className={`glass-card overflow-hidden flex flex-col ${cardClickable ? "cursor-pointer" : ""}`}
-      whileHover={{ y: -4, boxShadow: "0 20px 60px rgba(220,38,38,0.25), 0 0 0 1px rgba(220,38,38,0.5)" }}
+      whileHover={{ y: -4, boxShadow: "0 20px 60px rgba(155,48,43,0.25), 0 0 0 1px rgba(155,48,43,0.5)" }}
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
       onClick={cardClickable ? () => onClick(car) : undefined}
     >
@@ -92,7 +92,7 @@ export default function CarCard({ car, onClick, action, actionLabel, price, oldP
         </div>
         {car.color && <p className="text-xs text-text-muted mb-2">{t("car.color")} : {car.color}</p>}
 
-        <div className="mt-auto pt-3 border-t border-red-600/15">
+        <div className="mt-auto pt-3 border-t border-silver-500/14">
           {price != null && (
             <div className="mb-3">
               {oldPrice != null && oldPrice > price && (
@@ -100,7 +100,7 @@ export default function CarCard({ car, onClick, action, actionLabel, price, oldP
                   {hasOldUsd ? formatUsd(oldPriceUsd.usd) : formatAmount(oldPrice)}
                 </span>
               )}
-              <span className="text-xl font-black text-emerald-400">
+              <span className="text-xl font-black text-[#5FBE9A]">
                 {hasUsd ? formatUsd(priceUsd.usd) : formatAmount(price)}
               </span>
               {hasUsd && (

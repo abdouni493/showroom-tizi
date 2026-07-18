@@ -13,9 +13,9 @@ import WebsiteNav from "./WebsiteNav.jsx";
 function GlowBg() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-red-600/25 blur-[120px] animate-float1" />
-      <div className="absolute top-1/4 -right-40 w-[450px] h-[450px] rounded-full bg-red-900/20 blur-[120px] animate-float2" />
-      <div className="absolute inset-0" style={{ backgroundImage: "linear-gradient(rgba(220,38,38,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(220,38,38,0.04) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
+      <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-[#9CA8B1]/14 blur-[120px] animate-float1" />
+      <div className="absolute top-1/4 -right-40 w-[450px] h-[450px] rounded-full bg-[#9B302B]/16 blur-[120px] animate-float2" />
+      <div className="absolute inset-0" style={{ backgroundImage: "linear-gradient(rgba(153,161,169,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(153,161,169,0.045) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
     </div>
   );
 }
@@ -69,7 +69,7 @@ function Tilt3D({ children, className, index = 0, onClick }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.06 }}
-      whileHover={{ scale: 1.02, boxShadow: "0 30px 70px rgba(220,38,38,0.28), 0 0 0 1px rgba(220,38,38,0.45)" }}
+      whileHover={{ scale: 1.02, boxShadow: "0 30px 70px rgba(155,48,43,0.28), 0 0 0 1px rgba(155,48,43,0.45)" }}
     >
       {children}
     </motion.div>
@@ -91,7 +91,7 @@ function OfferCard({ car, price, oldPrice, onReserve, onOpen, index = 0 }) {
         <div className="mt-auto">
           <div className="mb-3">
             {oldPrice != null && oldPrice > price && <span className="text-sm text-text-muted line-through mr-2">{formatAmount(oldPrice)}</span>}
-            <span className="text-xl font-black text-emerald-400">{formatAmount(price)}</span>
+            <span className="text-xl font-black text-[#5FBE9A]">{formatAmount(price)}</span>
           </div>
           <div className="flex gap-2">
             <button className="btn-ghost text-xs flex-1" onClick={(e) => { e.stopPropagation(); onOpen({ car, price, oldPrice }); }}>Voir détails</button>
@@ -147,12 +147,12 @@ function CarDetailContent({ data, onReserve }) {
         <h3 className="heading text-xl text-text-primary">{car.brand} {car.model}</h3>
         <div className="text-right">
           {oldPrice != null && oldPrice > price && <span className="text-sm text-text-muted line-through mr-2">{formatAmount(oldPrice)}</span>}
-          <span className="text-2xl font-black text-emerald-400">{formatAmount(price)}</span>
+          <span className="text-2xl font-black text-[#5FBE9A]">{formatAmount(price)}</span>
         </div>
       </div>
       <div className="grid grid-cols-2 gap-x-6">
         {specs.map(([k, v]) => (
-          <div key={k} className="flex justify-between text-sm border-b border-red-600/10 py-1.5"><span className="text-text-muted">{k}</span><span className="text-text-primary">{v}</span></div>
+          <div key={k} className="flex justify-between text-sm border-b border-silver-500/12 py-1.5"><span className="text-text-muted">{k}</span><span className="text-text-primary">{v}</span></div>
         ))}
       </div>
       {car.fiche && <p className="text-sm text-text-muted">{car.fiche}</p>}
@@ -186,7 +186,7 @@ export default function Home() {
   const words = name.split(" ");
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-transparent">
       <WebsiteNav />
 
       {/* Hero */}
@@ -214,7 +214,7 @@ export default function Home() {
           </h1>
           <motion.p
             className="text-lg mb-8 max-w-xl mx-auto font-medium"
-            animate={{ color: ["#fca5a5", "#fee2e2", "#f87171", "#fee2e2", "#fca5a5"] }}
+            animate={{ color: ["#99A1A9", "#E5E6E6", "#C56B66", "#E5E6E6", "#99A1A9"] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           >
             {settings?.description || "Véhicules d'exception, service premium."}
@@ -226,7 +226,7 @@ export default function Home() {
           <AnimatePresence>
             {showIndicator && (
               <motion.div
-                className="mt-12 flex justify-center text-red-500/60"
+                className="mt-12 flex justify-center text-silver-500/70"
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               >
                 <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
@@ -242,7 +242,7 @@ export default function Home() {
       {specials.length > 0 && (
         <section id="special" className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
           <motion.div className="flex items-center gap-3 mb-6" initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.4 }}>
-            <Tag className="text-red-500" size={24} />
+            <Tag className="text-crimson-300" size={24} />
             <h2 className="heading text-2xl text-text-primary">Offres Spéciales</h2>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
@@ -254,8 +254,8 @@ export default function Home() {
                   {cd && !cd.expired && (
                     <div className="mt-2 flex justify-center">
                       <motion.span
-                        className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-bold"
-                        animate={{ scale: [1, 1.04, 1], color: ["#f59e0b", "#fbbf24", "#f59e0b"] }}
+                        className="px-3 py-1 rounded-full bg-[#C89143]/12 border border-[#C89143]/22 text-xs font-bold"
+                        animate={{ scale: [1, 1.04, 1], color: ["#C89143", "#DDAE6A", "#C89143"] }}
                         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                       >
                         ⏱ {cd.days}j {cd.hours}h {cd.minutes}m
@@ -283,7 +283,7 @@ export default function Home() {
         )}
       </section>
 
-      <footer className="border-t border-red-600/20 py-8 text-center text-text-muted text-sm">
+      <footer className="border-t border-silver-500/16 py-8 text-center text-text-muted text-sm">
         <p>© {new Date().getFullYear()} {name}</p>
         <p className="mt-1">{settings?.phone} {settings?.email && `· ${settings.email}`}</p>
       </footer>

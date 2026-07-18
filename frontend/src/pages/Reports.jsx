@@ -25,8 +25,8 @@ function DataBlock({ cols, rows, view, onRow }) {
       <div className="overflow-x-auto">
         <table className="w-full text-sm border-collapse">
           <thead>
-            <tr className="text-left rtl:text-right bg-red-600/10 border-b border-red-600/30">
-              {cols.map((c) => <th key={c.key} className="p-3 label-caps !text-red-300/80">{c.label}</th>)}
+            <tr className="text-left rtl:text-right bg-silver-500/10 border-b border-silver-500/24">
+              {cols.map((c) => <th key={c.key} className="p-3 label-caps !text-crimson-200/80">{c.label}</th>)}
               <th className="p-3" />
             </tr>
           </thead>
@@ -38,7 +38,7 @@ function DataBlock({ cols, rows, view, onRow }) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.02 }}
                 onClick={() => onRow(r)}
-                className={`border-b border-red-600/10 cursor-pointer hover:bg-red-600/8 ${i % 2 ? "bg-white/[0.015]" : ""}`}
+                className={`border-b border-silver-500/12 cursor-pointer hover:bg-silver-500/8 ${i % 2 ? "bg-white/[0.015]" : ""}`}
               >
                 {cols.map((c) => <td key={c.key} className={`p-3 ${c.cls || "text-text-primary"}`}>{c.render ? c.render(r) : r[c.key]}</td>)}
                 <td className="p-3 text-text-muted"><ChevronRight size={15} /></td>
@@ -104,7 +104,7 @@ function DetailView({ detail }) {
       {car && <div className="rounded-xl overflow-hidden"><CarImage images={car.images} heightClass="h-40" /></div>}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
         {rows.map(([k, v]) => (
-          <div key={k} className="flex justify-between text-sm border-b border-red-600/10 py-1.5">
+          <div key={k} className="flex justify-between text-sm border-b border-silver-500/12 py-1.5">
             <span className="text-text-muted">{k}</span>
             <span className="text-text-primary text-right">{v ?? "—"}</span>
           </div>
@@ -114,7 +114,7 @@ function DetailView({ detail }) {
         <div>
           <p className="label-caps mb-1">Dépenses du véhicule</p>
           {detail.expenseList.map((e, i) => (
-            <div key={i} className="flex justify-between text-sm border-b border-red-600/10 py-1"><span className="text-text-muted">{e.name}</span><span className="text-amber-400">{money(e.amount)}</span></div>
+            <div key={i} className="flex justify-between text-sm border-b border-silver-500/12 py-1"><span className="text-text-muted">{e.name}</span><span className="text-[#DDAE6A]">{money(e.amount)}</span></div>
           ))}
         </div>
       )}
@@ -150,47 +150,47 @@ export default function Reports() {
     { key: "client", label: "Client", render: (s) => `${s.client?.firstName || ""} ${s.client?.lastName || ""}` },
     { key: "car", label: "Véhicule", render: (s) => `${s.car?.brand} ${s.car?.model}`, cls: "text-text-muted" },
     { key: "total", label: "Total", render: (s) => <DualPriceInline dzd={s.totalAfterReduction} currency={s.saleCurrency} usd={saleUsd(s, s.totalAfterReduction)} />, cls: "text-text-primary font-bold" },
-    { key: "rest", label: "Reste", render: (s) => money(s.amountRest), cls: "text-rose-400" },
+    { key: "rest", label: "Reste", render: (s) => money(s.amountRest), cls: "text-crimson-300" },
     { key: "date", label: "Date", render: (s) => formatDate(s.date), cls: "text-text-muted" },
   ];
   const purchaseCols = [
     { key: "ref", label: "Véhicule", render: (p) => `${p.car?.brand} ${p.car?.model}` },
     { key: "src", label: "Source", render: (p) => (p.sourceType === "SUPPLIER" ? "Fournisseur" : "Client"), cls: "text-text-muted" },
     { key: "price", label: "Prix", render: (p) => <DualPriceInline dzd={p.purchasePrice} currency={p.purchaseCurrency} usd={p.purchasePriceUsd} />, cls: "text-text-primary font-bold" },
-    { key: "rest", label: "Reste", render: (p) => money(p.amountRest), cls: "text-rose-400" },
+    { key: "rest", label: "Reste", render: (p) => money(p.amountRest), cls: "text-crimson-300" },
     { key: "date", label: "Date", render: (p) => formatDate(p.date), cls: "text-text-muted" },
   ];
   const carCols = [
     { key: "car", label: "Véhicule", render: (c) => `${c.car?.brand} ${c.car?.model}` },
     { key: "cost", label: "Coût total", render: (c) => money(c.totalCost), cls: "text-text-muted" },
     { key: "sale", label: "Vente", render: (c) => money(c.salePrice), cls: "text-text-primary" },
-    { key: "net", label: "Marge nette", render: (c) => <span className={c.netMargin >= 0 ? "text-emerald-400" : "text-rose-400"}>{money(c.netMargin)}</span> },
+    { key: "net", label: "Marge nette", render: (c) => <span className={c.netMargin >= 0 ? "text-[#5FBE9A]" : "text-crimson-300"}>{money(c.netMargin)}</span> },
     { key: "pct", label: "%", render: (c) => `${c.netMarginPct}%`, cls: "text-text-muted" },
   ];
   const debtClientCols = [
     { key: "client", label: "Client", render: (d) => `${d.client?.firstName || ""} ${d.client?.lastName || ""}` },
     { key: "car", label: "Véhicule", render: (d) => `${d.car?.brand} ${d.car?.model}`, cls: "text-text-muted" },
-    { key: "rest", label: "Reste", render: (d) => money(d.rest), cls: "text-rose-400 font-bold" },
+    { key: "rest", label: "Reste", render: (d) => money(d.rest), cls: "text-crimson-300 font-bold" },
     { key: "date", label: "Date", render: (d) => formatDate(d.date), cls: "text-text-muted" },
   ];
   const debtSupplierCols = [
     { key: "source", label: "Source", render: (d) => d.source },
     { key: "car", label: "Véhicule", render: (d) => `${d.car?.brand} ${d.car?.model}`, cls: "text-text-muted" },
-    { key: "rest", label: "Reste", render: (d) => money(d.rest), cls: "text-rose-400 font-bold" },
+    { key: "rest", label: "Reste", render: (d) => money(d.rest), cls: "text-crimson-300 font-bold" },
     { key: "date", label: "Date", render: (d) => formatDate(d.date), cls: "text-text-muted" },
   ];
   const payrollCols = [
     { key: "fullName", label: "Employé", render: (p) => p.fullName },
     { key: "role", label: "Rôle", render: (p) => p.role, cls: "text-text-muted" },
-    { key: "net", label: "Net payé", render: (p) => money(p.netPaid), cls: "text-emerald-400 font-bold" },
-    { key: "abs", label: "Absences", render: (p) => money(p.absences), cls: "text-rose-400" },
+    { key: "net", label: "Net payé", render: (p) => money(p.netPaid), cls: "text-[#5FBE9A] font-bold" },
+    { key: "abs", label: "Absences", render: (p) => money(p.absences), cls: "text-crimson-300" },
   ];
   // Dollar operations: the $ amount, the rate it was struck at, and the dinars
   // it converted to (the value every other section already counts).
   const devisePurchaseCols = [
     { key: "car", label: "Véhicule", render: (d) => `${d.car?.brand || ""} ${d.car?.model || ""}` },
     { key: "source", label: "Source", render: (d) => d.source, cls: "text-text-muted" },
-    { key: "usd", label: "Montant $", render: (d) => formatUsd(d.usd), cls: "text-emerald-400 font-bold" },
+    { key: "usd", label: "Montant $", render: (d) => formatUsd(d.usd), cls: "text-[#5FBE9A] font-bold" },
     { key: "rate", label: "Taux", render: (d) => formatRate(d.rate), cls: "text-text-muted" },
     { key: "dzd", label: "Converti en DA", render: (d) => money(d.dzd), cls: "text-text-primary font-bold" },
     { key: "date", label: "Date", render: (d) => formatDate(d.date), cls: "text-text-muted" },
@@ -198,7 +198,7 @@ export default function Reports() {
   const deviseSaleCols = [
     { key: "car", label: "Véhicule", render: (d) => `${d.car?.brand || ""} ${d.car?.model || ""}` },
     { key: "client", label: "Client", render: (d) => `${d.client?.firstName || ""} ${d.client?.lastName || ""}`, cls: "text-text-muted" },
-    { key: "usd", label: "Montant $", render: (d) => formatUsd(d.usd), cls: "text-emerald-400 font-bold" },
+    { key: "usd", label: "Montant $", render: (d) => formatUsd(d.usd), cls: "text-[#5FBE9A] font-bold" },
     { key: "rate", label: "Taux", render: (d) => formatRate(d.rate), cls: "text-text-muted" },
     { key: "dzd", label: "Converti en DA", render: (d) => money(d.dzd), cls: "text-text-primary font-bold" },
     { key: "date", label: "Date", render: (d) => formatDate(d.date), cls: "text-text-muted" },
@@ -216,7 +216,7 @@ export default function Reports() {
   const expenseCols = [
     { key: "name", label: "Nom", render: (e) => e.name },
     { key: "desc", label: "Description", render: (e) => e.description || "—", cls: "text-text-muted" },
-    { key: "amount", label: "Montant", render: (e) => money(e.amount), cls: "text-amber-400 font-bold" },
+    { key: "amount", label: "Montant", render: (e) => money(e.amount), cls: "text-[#DDAE6A] font-bold" },
     { key: "date", label: "Date", render: (e) => formatDate(e.date), cls: "text-text-muted" },
   ];
 
@@ -297,12 +297,12 @@ export default function Reports() {
           <Section title="1. Synthèse Globale">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[
-                ["Ventes", `${report.synthese.totalSalesCount} op.`, money(report.synthese.totalSalesAmount), "text-emerald-400"],
-                ["Achats", `${report.synthese.totalPurchaseCount} op.`, money(report.synthese.totalPurchaseAmount), "text-violet-400"],
-                ["Dépenses véhicules", "", money(report.synthese.totalCarExpenses), "text-amber-400"],
-                ["Dépenses showroom", "", money(report.synthese.totalShowroomExpenses), "text-amber-400"],
-                ["Bénéfice brut", "", money(report.synthese.grossProfit), "text-emerald-400"],
-                ["Bénéfice net", "", money(report.synthese.netProfit), "text-emerald-400"],
+                ["Ventes", `${report.synthese.totalSalesCount} op.`, money(report.synthese.totalSalesAmount), "text-[#5FBE9A]"],
+                ["Achats", `${report.synthese.totalPurchaseCount} op.`, money(report.synthese.totalPurchaseAmount), "text-[#AFA0C9]"],
+                ["Dépenses véhicules", "", money(report.synthese.totalCarExpenses), "text-[#DDAE6A]"],
+                ["Dépenses showroom", "", money(report.synthese.totalShowroomExpenses), "text-[#DDAE6A]"],
+                ["Bénéfice brut", "", money(report.synthese.grossProfit), "text-[#5FBE9A]"],
+                ["Bénéfice net", "", money(report.synthese.netProfit), "text-[#5FBE9A]"],
               ].map(([label, count, amount, color]) => (
                 <motion.div key={label} whileHover={{ scale: 1.03 }} className="glass-card p-3">
                   <p className="label-caps">{label}</p>
@@ -332,9 +332,9 @@ export default function Reports() {
               <>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-5">
                   {[
-                    ["Achats en $", formatUsd(report.devises.totals.purchaseUsd), money(report.devises.totals.purchaseDzd), formatRate(report.devises.totals.purchaseAvgRate), "text-violet-400"],
-                    ["Ventes en $", formatUsd(report.devises.totals.saleUsd), money(report.devises.totals.saleDzd), formatRate(report.devises.totals.saleAvgRate), "text-emerald-400"],
-                    ["Solde en $", formatUsd(report.devises.totals.saleUsd - report.devises.totals.purchaseUsd), money(report.devises.totals.saleDzd - report.devises.totals.purchaseDzd), "Ventes − Achats", "text-amber-400"],
+                    ["Achats en $", formatUsd(report.devises.totals.purchaseUsd), money(report.devises.totals.purchaseDzd), formatRate(report.devises.totals.purchaseAvgRate), "text-[#AFA0C9]"],
+                    ["Ventes en $", formatUsd(report.devises.totals.saleUsd), money(report.devises.totals.saleDzd), formatRate(report.devises.totals.saleAvgRate), "text-[#5FBE9A]"],
+                    ["Solde en $", formatUsd(report.devises.totals.saleUsd - report.devises.totals.purchaseUsd), money(report.devises.totals.saleDzd - report.devises.totals.purchaseDzd), "Ventes − Achats", "text-[#DDAE6A]"],
                   ].map(([label, usd, dzd, sub, color]) => (
                     <motion.div key={label} whileHover={{ scale: 1.03 }} className="glass-card p-3">
                       <p className="label-caps">{label}</p>

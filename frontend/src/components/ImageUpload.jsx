@@ -29,9 +29,9 @@ export function MultiImageUpload({ value = [], onChange, bucket }) {
           e.preventDefault();
           handleFiles(e.dataTransfer.files);
         }}
-        className="border-2 border-dashed border-red-600/40 rounded-xl p-6 text-center cursor-pointer hover:border-red-600 hover:bg-red-600/5 transition"
+        className="border-2 border-dashed border-crimson-500/42 rounded-xl p-6 text-center cursor-pointer hover:border-crimson-500 hover:bg-silver-500/6 transition"
       >
-        <UploadCloud className="mx-auto text-red-500 mb-2" size={32} />
+        <UploadCloud className="mx-auto text-crimson-300 mb-2" size={32} />
         <p className="text-sm text-text-muted">
           {uploading ? "Téléchargement..." : "Glissez des images ici ou cliquez pour parcourir"}
         </p>
@@ -48,12 +48,12 @@ export function MultiImageUpload({ value = [], onChange, bucket }) {
       {value.length > 0 && (
         <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 mt-3">
           {value.map((url, i) => (
-            <div key={i} className="relative group aspect-[4/3] rounded-lg overflow-hidden border border-red-600/30">
+            <div key={i} className="relative group aspect-[4/3] rounded-lg overflow-hidden border border-silver-500/24">
               <img src={url} alt="" className="w-full h-full object-cover" />
               <button
                 type="button"
                 onClick={() => onChange(value.filter((_, idx) => idx !== i))}
-                className="absolute top-1 right-1 bg-black/70 rounded-full p-1 text-white opacity-0 group-hover:opacity-100 transition"
+                className="absolute top-1 right-1 bg-steel-950/72 rounded-full p-1 text-white opacity-0 group-hover:opacity-100 transition"
               >
                 <X size={14} />
               </button>
@@ -89,12 +89,12 @@ export function SingleImageUpload({ value, onChange, label = "Photo", size = 96,
       <div
         onClick={() => inputRef.current?.click()}
         style={{ width: size, height: size }}
-        className="rounded-xl border-2 border-dashed border-red-600/40 flex items-center justify-center cursor-pointer hover:border-red-600 overflow-hidden bg-red-600/5 shrink-0"
+        className="rounded-xl border-2 border-dashed border-crimson-500/42 flex items-center justify-center cursor-pointer hover:border-crimson-500 overflow-hidden bg-silver-500/6 shrink-0"
       >
         {value ? (
           <img src={value} alt="" className={`w-full h-full ${fit === "contain" ? "object-contain p-1.5" : "object-cover"}`} />
         ) : (
-          <ImageIcon className="text-red-500" size={28} />
+          <ImageIcon className="text-crimson-300" size={28} />
         )}
       </div>
       <div>
@@ -103,7 +103,7 @@ export function SingleImageUpload({ value, onChange, label = "Photo", size = 96,
           {uploading ? "..." : value ? "Changer" : "Choisir"}
         </button>
         {value && (
-          <button type="button" className="text-xs text-rose-400 ml-2" onClick={() => onChange(null)}>
+          <button type="button" className="text-xs text-crimson-300 ml-2" onClick={() => onChange(null)}>
             Retirer
           </button>
         )}

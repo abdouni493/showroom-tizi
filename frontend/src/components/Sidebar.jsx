@@ -49,9 +49,15 @@ export default function Sidebar({ onNavigate }) {
   };
 
   return (
-    <aside className="sidebar w-[260px] h-full bg-black border-r border-red-600/20 flex flex-col">
+    <aside
+      className="sidebar w-[260px] h-full border-r border-silver-500/16 flex flex-col"
+      style={{
+        background: "linear-gradient(180deg,#262B33 0%,#21252C 45%,#1B1F25 100%)",
+        boxShadow: "1px 0 24px rgba(0,0,0,0.45)",
+      }}
+    >
       {/* Header */}
-      <div className="p-5 border-b border-red-600/20 flex items-center gap-3">
+      <div className="p-5 border-b border-silver-500/14 flex items-center gap-3">
         <motion.div whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400, damping: 20 }}>
           <AnimatedLogo src={settings?.logo} size={44} rounded="rounded-xl" />
         </motion.div>
@@ -72,19 +78,30 @@ export default function Sidebar({ onNavigate }) {
           <motion.div key={to} variants={navItem} whileHover={{ x: 3 }} whileTap={{ scale: 0.97 }}>
             <NavLink to={to} onClick={onNavigate}>
               {({ isActive }) => (
-                <div className="relative flex items-center gap-3 px-3 py-2.5 rounded-xl">
+                <div
+                  className={`group relative flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors ${
+                    isActive
+                      ? ""
+                      : "hover:bg-[rgba(153,161,169,0.10)] hover:shadow-[inset_2px_0_0_rgba(153,161,169,0.45)] rtl:hover:shadow-[inset_-2px_0_0_rgba(153,161,169,0.45)]"
+                  }`}
+                >
                   {isActive && (
                     <motion.div
                       layoutId="sidebar-active"
                       className="absolute inset-0"
-                      style={{ background: "linear-gradient(90deg,#dc2626,#7f1d1d)", borderLeft: "4px solid #ef4444", borderRadius: "0 1rem 1rem 0" }}
+                      style={{
+                        background: "linear-gradient(180deg, #A8352F 0%, #8E2F2A 48%, #6C2826 100%)",
+                        borderLeft: "4px solid #C0C2C4",
+                        borderRadius: "0 1rem 1rem 0",
+                        boxShadow: "inset 0 1px 0 rgba(255,255,255,0.20), inset 0 -1px 0 rgba(0,0,0,0.34), 0 3px 14px rgba(0,0,0,0.42)",
+                      }}
                       transition={{ type: "spring", stiffness: 350, damping: 30 }}
                     />
                   )}
                   <motion.div whileHover={{ scale: 1.2 }} className="relative z-10 shrink-0">
-                    <Icon size={18} className={isActive ? "text-white" : "text-text-muted"} />
+                    <Icon size={18} className={isActive ? "text-[#F5F6F6]" : "text-silver-500 group-hover:text-[#E5E6E6]"} />
                   </motion.div>
-                  <span className={`relative z-10 truncate text-[0.78rem] uppercase tracking-wide ${isActive ? "text-white font-black" : "text-text-muted font-bold"}`}>
+                  <span className={`relative z-10 truncate text-[0.78rem] uppercase tracking-wide ${isActive ? "text-[#F5F6F6] font-black" : "text-silver-500 font-bold group-hover:text-[#E5E6E6]"}`}>
                     {t(`nav.${key}`)}
                   </span>
                 </div>
@@ -95,21 +112,22 @@ export default function Sidebar({ onNavigate }) {
       </motion.nav>
 
       {/* Footer */}
-      <div className="border-t border-red-600/20 p-3 space-y-2">
+      <div className="border-t border-silver-500/14 p-3 space-y-2">
         <motion.button
           onClick={handleLogout}
           whileHover={{ x: 3 }}
           whileTap={{ scale: 0.97 }}
-          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold uppercase tracking-wide text-text-muted hover:bg-red-600/8 hover:text-text-primary transition-colors"
+          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold uppercase tracking-wide text-silver-500 hover:bg-[rgba(155,48,43,0.14)] hover:text-[#D08A85] transition-colors"
         >
           <LogOut size={18} />
           <span className="text-[0.78rem]">{t("nav.logout")}</span>
         </motion.button>
 
-        <div className="flex items-center gap-3 px-3 py-2 rounded-xl bg-red-600/8">
+        <div className="flex items-center gap-3 px-3 py-2 rounded-xl bg-[rgba(153,161,169,0.08)] border border-[rgba(153,161,169,0.12)]">
           <motion.div
-            className="w-9 h-9 rounded-full bg-gradient-to-br from-red-600 to-red-900 flex items-center justify-center text-white font-black text-xs"
-            animate={{ boxShadow: ["0 0 0px rgba(220,38,38,0)", "0 0 20px rgba(220,38,38,0.3)", "0 0 0px rgba(220,38,38,0)"] }}
+            className="w-9 h-9 rounded-full flex items-center justify-center text-white font-black text-xs"
+            style={{ background: "linear-gradient(160deg,#B4413C,#6C2826)" }}
+            animate={{ boxShadow: ["0 0 0px rgba(155,48,43,0)", "0 0 20px rgba(155,48,43,0.3)", "0 0 0px rgba(155,48,43,0)"] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           >
             {initials(user?.fullName || "U")}
@@ -122,9 +140,9 @@ export default function Sidebar({ onNavigate }) {
 
         <motion.button
           onClick={toggleLang}
-          whileHover={{ scale: 1.03, borderColor: "#dc2626" }}
+          whileHover={{ scale: 1.03, borderColor: "#99A1A9" }}
           whileTap={{ scale: 0.95 }}
-          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl border border-red-600/30 text-text-muted hover:text-text-primary transition-colors text-xs font-bold uppercase tracking-wider overflow-hidden"
+          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl border border-silver-500/34 text-silver-300 hover:text-[#F5F6F6] transition-colors text-xs font-bold uppercase tracking-wider overflow-hidden"
         >
           <Languages size={16} />
           <AnimatePresence mode="wait">

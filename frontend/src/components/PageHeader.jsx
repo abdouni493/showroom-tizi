@@ -34,8 +34,7 @@ export default function PageHeader({ title, subtitle, action, actionLabel, icon:
         </div>
       </div>
       <motion.div
-        className="h-0.5 mt-3 origin-left"
-        style={{ background: "linear-gradient(90deg,#dc2626,transparent)" }}
+        className="page-underline h-0.5 mt-3 origin-left"
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 0.4, ease: "easeOut" }}

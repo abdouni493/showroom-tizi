@@ -6,26 +6,26 @@ import { X, AlertTriangle, Inbox, Check, CheckCircle2, XCircle, Info } from "luc
 
 // Hex map for inline glow / accents that Tailwind classes can't express dynamically
 export const COLOR_HEX = {
-  success: "#10b981",
-  accent: "#dc2626",
-  warning: "#f59e0b",
-  info: "#3b82f6",
-  supplier: "#7c3aed",
-  debt: "#fb7185",
-  muted: "#f87171",
+  success: "#3FA07C",
+  accent: "#9B302B",
+  warning: "#C89143",
+  info: "#5B87B5",
+  supplier: "#8A7BA8",
+  debt: "#C56B66",
+  muted: "#99A1A9",
 };
 
 const spring = { type: "spring", stiffness: 320, damping: 28 };
 
 // ---------- Badge ----------
 const BADGE_STYLES = {
-  success: { classes: "bg-emerald-500/12 text-emerald-400 border-emerald-500/30", glow: "0 0 10px rgba(16,185,129,0.2)" },
-  accent: { classes: "bg-red-600/15 text-red-400 border-red-600/30", glow: "0 0 10px rgba(220,38,38,0.2)" },
-  warning: { classes: "bg-amber-500/12 text-amber-400 border-amber-500/30", glow: "0 0 10px rgba(245,158,11,0.15)" },
-  info: { classes: "bg-blue-500/15 text-blue-400 border-blue-500/30", glow: null },
-  supplier: { classes: "bg-violet-600/12 text-violet-400 border-violet-600/30", glow: "0 0 10px rgba(124,58,237,0.2)" },
-  debt: { classes: "bg-rose-400/12 text-rose-300 border-rose-400/30", glow: "0 0 10px rgba(251,113,133,0.2)" },
-  muted: { classes: "bg-white/5 text-text-muted border-white/10", glow: null },
+  success: { classes: "bg-success/14 text-[#5FBE9A] border-success/34", glow: "0 0 10px rgba(63,160,124,0.2)" },
+  accent: { classes: "bg-crimson-500/16 text-crimson-200 border-crimson-500/38", glow: "0 0 10px rgba(155,48,43,0.24)" },
+  warning: { classes: "bg-warning/14 text-[#DDAE6A] border-warning/34", glow: "0 0 10px rgba(200,145,67,0.18)" },
+  info: { classes: "bg-info/14 text-[#8FB4D9] border-info/34", glow: null },
+  supplier: { classes: "bg-supplier/14 text-[#AFA0C9] border-supplier/34", glow: "0 0 10px rgba(138,123,168,0.2)" },
+  debt: { classes: "bg-debt/14 text-crimson-200 border-debt/34", glow: "0 0 10px rgba(197,107,102,0.2)" },
+  muted: { classes: "bg-silver-500/8 text-silver-500 border-silver-500/18", glow: null },
 };
 
 export function Badge({ children, color = "muted", className = "" }) {
@@ -64,7 +64,7 @@ export function Modal({ open, onClose, title, children, footer, size = "md" }) {
     <AnimatePresence>
       {open && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/80 backdrop-blur-sm p-4 no-print"
+          className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-steel-950/82 backdrop-blur-sm p-4 no-print"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -82,16 +82,16 @@ export function Modal({ open, onClose, title, children, footer, size = "md" }) {
             {/* scroll progress bar */}
             <motion.div
               className="absolute top-0 left-0 right-0 h-0.5 origin-left rounded-t-panel z-10"
-              style={{ scaleX: scrollPct, background: "linear-gradient(90deg,#dc2626,#ef4444)" }}
+              style={{ scaleX: scrollPct, background: "linear-gradient(90deg,#6C2826,#B4413C,#C0C2C4)" }}
             />
-            <div className="flex items-center justify-between p-5 border-b border-red-600/20">
+            <div className="flex items-center justify-between p-5 border-b border-silver-500/16">
               <h3 className="heading text-lg text-text-primary">{title}</h3>
               <button onClick={onClose} className="text-text-muted hover:text-text-primary transition">
                 <X size={22} />
               </button>
             </div>
             <div className="p-5 max-h-[70vh] overflow-y-auto" onScroll={onScroll}>{children}</div>
-            {footer && <div className="flex justify-end gap-3 p-5 border-t border-red-600/20">{footer}</div>}
+            {footer && <div className="flex justify-end gap-3 p-5 border-t border-silver-500/16">{footer}</div>}
           </motion.div>
         </motion.div>
       )}
@@ -108,7 +108,7 @@ export function ConfirmModal({ open, onClose, onConfirm, title, message, loading
     <AnimatePresence>
       {open && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 no-print"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-steel-950/82 backdrop-blur-sm p-4 no-print"
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }}
           onClick={onClose}
         >
@@ -120,17 +120,17 @@ export function ConfirmModal({ open, onClose, onConfirm, title, message, loading
             transition={spring}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between p-5 border-b border-red-600/20">
+            <div className="flex items-center justify-between p-5 border-b border-silver-500/16">
               <h3 className="heading text-lg text-text-primary">{title}</h3>
               <button onClick={onClose} className="text-text-muted hover:text-text-primary transition"><X size={22} /></button>
             </div>
             <div className="p-5">
               <div className="flex items-start gap-3 text-text-primary">
-                <AlertTriangle className="text-amber-400 shrink-0" size={28} />
+                <AlertTriangle className="text-[#DDAE6A] shrink-0" size={28} />
                 <p className="text-sm text-text-muted leading-relaxed">{message}</p>
               </div>
             </div>
-            <div className="flex justify-end gap-3 p-5 border-t border-red-600/20">
+            <div className="flex justify-end gap-3 p-5 border-t border-silver-500/16">
               <button className="btn-ghost" onClick={onClose}>{t("common.cancel")}</button>
               <button className="btn-danger" onClick={onConfirm} disabled={loading}>{loading ? "..." : t("common.delete")}</button>
             </div>
@@ -154,7 +154,7 @@ export function Stepper({ steps, current }) {
               <motion.div
                 animate={
                   active
-                    ? { scale: [1, 1.25, 1], boxShadow: ["0 0 0px rgba(220,38,38,0)", "0 0 30px rgba(220,38,38,0.6)", "0 0 20px rgba(220,38,38,0.4)"] }
+                    ? { scale: [1, 1.25, 1], boxShadow: ["0 0 0px rgba(155,48,43,0)", "0 0 30px rgba(155,48,43,0.55)", "0 0 20px rgba(155,48,43,0.4)"] }
                     : done
                     ? { scale: [1, 0.85, 1] }
                     : { scale: 1 }
@@ -162,10 +162,10 @@ export function Stepper({ steps, current }) {
                 transition={{ duration: 0.5 }}
                 className={`w-10 h-10 rounded-full flex items-center justify-center font-black text-sm border-2 ${
                   done
-                    ? "bg-emerald-500 border-emerald-500 text-white"
+                    ? "bg-success border-success text-white"
                     : active
-                    ? "bg-gradient-to-br from-red-600 to-red-900 border-red-500 text-white"
-                    : "bg-glass border-red-600/30 text-text-muted"
+                    ? "bg-gradient-to-b from-crimson-400 to-crimson-700 border-crimson-300 text-white"
+                    : "bg-steel-700 border-silver-500/26 text-silver-500"
                 }`}
               >
                 {done ? <Check size={18} /> : i + 1}
@@ -173,8 +173,8 @@ export function Stepper({ steps, current }) {
               <span className={`text-[0.6rem] font-bold uppercase tracking-wider ${active ? "text-text-primary" : "text-text-muted"}`}>{label}</span>
             </div>
             {i < steps.length - 1 && (
-              <div className="w-12 sm:w-20 h-0.5 mx-2 -mt-5 bg-red-600/20 overflow-hidden">
-                <motion.div className="h-full bg-emerald-500 origin-left" initial={{ scaleX: 0 }} animate={{ scaleX: done ? 1 : 0 }} transition={spring} />
+              <div className="w-12 sm:w-20 h-0.5 mx-2 -mt-5 bg-silver-500/18 overflow-hidden">
+                <motion.div className="h-full bg-success origin-left" initial={{ scaleX: 0 }} animate={{ scaleX: done ? 1 : 0 }} transition={spring} />
               </div>
             )}
           </div>
@@ -186,8 +186,8 @@ export function Stepper({ steps, current }) {
 
 // ---------- StatCard (with counting numbers) ----------
 const STAT_TEXT = {
-  success: "text-emerald-400", accent: "text-red-400", warning: "text-amber-400",
-  info: "text-blue-400", supplier: "text-violet-400", debt: "text-rose-300",
+  success: "text-[#5FBE9A]", accent: "text-crimson-300", warning: "text-[#DDAE6A]",
+  info: "text-[#8FB4D9]", supplier: "text-[#AFA0C9]", debt: "text-crimson-300",
 };
 
 function useCountUp(value) {
@@ -233,7 +233,7 @@ export function StatCard({ label, value, icon: Icon, color = "info", large = fal
         </div>
         <div className="relative">
           <div className="absolute inset-0 rounded-2xl" style={{ background: `radial-gradient(circle, ${hex}26 0%, transparent 70%)` }} />
-          <div className={`relative p-3 rounded-2xl bg-white/5 ${STAT_TEXT[color]}`}>
+          <div className={`relative p-3 rounded-2xl bg-silver-500/10 ${STAT_TEXT[color]}`}>
             <Icon size={large ? 28 : 22} />
           </div>
         </div>
@@ -254,16 +254,16 @@ export function EmptyState({ icon: Icon = Inbox, message = "Aucune donnée", cta
       <div className="relative mb-4">
         <motion.div
           className="absolute inset-0 rounded-full"
-          animate={{ boxShadow: ["0 0 0 0 rgba(220,38,38,0.2)", "0 0 0 16px rgba(220,38,38,0)"] }}
+          animate={{ boxShadow: ["0 0 0 0 rgba(155,48,43,0.2)", "0 0 0 16px rgba(155,48,43,0)"] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
         />
         <motion.div
-          className="relative p-5 rounded-full bg-red-600/10"
+          className="relative p-5 rounded-full bg-crimson-500/12"
           animate={{ scale: [1, 1.08, 1] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
         >
           <motion.div animate={{ rotate: [0, 5, -5, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
-            <Icon size={40} className="text-red-500" />
+            <Icon size={40} className="text-crimson-300" />
           </motion.div>
         </motion.div>
       </div>
@@ -282,14 +282,14 @@ export function SkeletonCard({ className = "", height = "h-40" }) {
   return (
     <motion.div
       className={`rounded-card ${height} relative overflow-hidden ${className}`}
-      style={{ background: "rgba(220,38,38,0.04)", border: "1px solid rgba(220,38,38,0.12)" }}
+      style={{ background: "rgba(153,161,169,0.06)", border: "1px solid rgba(153,161,169,0.16)" }}
       initial={{ opacity: 0.6 }}
       animate={{ opacity: [0.6, 0.9, 0.6] }}
       transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
     >
       <motion.div
         className="absolute inset-0"
-        style={{ background: "linear-gradient(90deg,transparent,rgba(220,38,38,0.12),transparent)" }}
+        style={{ background: "linear-gradient(90deg,transparent,rgba(153,161,169,0.16),transparent)" }}
         animate={{ x: ["-100%", "200%"] }}
         transition={{ duration: 1.6, repeat: Infinity, ease: "linear" }}
       />
@@ -332,14 +332,14 @@ export function Field({ label, error, children, required, className = "" }) {
       {label && (
         <motion.label
           className="label-caps"
-          animate={{ color: focused ? "#dc2626" : "rgba(248,113,113,0.7)" }}
+          animate={{ color: focused ? "#C56B66" : "rgba(153,161,169,0.78)" }}
           transition={{ duration: 0.2 }}
         >
-          {label} {required && <span className="text-red-500">*</span>}
+          {label} {required && <span className="text-crimson-300">*</span>}
         </motion.label>
       )}
       {children}
-      {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
+      {error && <p className="text-crimson-200 text-xs mt-1">{error}</p>}
     </div>
   );
 }
@@ -350,11 +350,11 @@ export function Toggle({ checked, onChange, label }) {
     <button type="button" onClick={() => onChange(!checked)} className="flex items-center gap-2.5">
       <motion.span
         className="relative w-11 h-6 rounded-full"
-        animate={{ backgroundColor: checked ? "rgba(220,38,38,0.9)" : "rgba(220,38,38,0.15)" }}
+        animate={{ backgroundColor: checked ? "rgba(155,48,43,0.95)" : "rgba(153,161,169,0.20)" }}
         transition={{ duration: 0.2 }}
       >
         <motion.span
-          className="absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow"
+          className="absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-[#F5F6F6] shadow"
           animate={{ x: checked ? 20 : 0 }}
           transition={{ type: "spring", stiffness: 500, damping: 30 }}
         />
@@ -381,9 +381,9 @@ export function useToast() {
 }
 
 const TOAST_STYLE = {
-  success: { border: "border-emerald-500/40", icon: CheckCircle2, color: "text-emerald-400" },
-  error: { border: "border-red-600/40", icon: XCircle, color: "text-red-400" },
-  info: { border: "border-blue-500/40", icon: Info, color: "text-blue-400" },
+  success: { border: "border-[#3FA07C]/45", icon: CheckCircle2, color: "text-[#5FBE9A]" },
+  error: { border: "border-crimson-500/50", icon: XCircle, color: "text-crimson-300" },
+  info: { border: "border-[#5B87B5]/45", icon: Info, color: "text-[#8FB4D9]" },
 };
 
 export function ToastContainer() {

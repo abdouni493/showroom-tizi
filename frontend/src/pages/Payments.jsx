@@ -89,7 +89,7 @@ export default function Payments() {
                 <p className="text-xs text-text-muted">{formatDate(p.date)}</p>
               </div>
               <div className="text-right">
-                <p className="text-lg font-black text-emerald-400">{formatAmount(p.amount)}</p>
+                <p className="text-lg font-black text-[#5FBE9A]">{formatAmount(p.amount)}</p>
               </div>
               <ActionMenu items={[
                 { label: t("common.view"), icon: Eye, onClick: () => setViewItem(p) },
@@ -124,7 +124,7 @@ export default function Payments() {
                 <div className="flex-1"><p className="text-sm text-text-primary font-bold">{selectedCar.brand} {selectedCar.model}</p><p className="text-xs text-text-muted">{selectedCar.plate}{selectedCar.sales?.[0]?.client && ` · ${selectedCar.sales[0].client.firstName} ${selectedCar.sales[0].client.lastName}`}</p></div>
                 <button className="btn-ghost text-xs py-1.5" onClick={() => setSelectedCar(null)}>{t("common.change")}</button>
               </div>
-              {selectedCar.sales?.[0] && <p className="text-xs text-text-muted mt-2">{t("payments.remainingDue")} : <span className="text-rose-400 font-bold">{formatAmount(selectedCar.sales[0].amountRest)}</span></p>}
+              {selectedCar.sales?.[0] && <p className="text-xs text-text-muted mt-2">{t("payments.remainingDue")} : <span className="text-crimson-300 font-bold">{formatAmount(selectedCar.sales[0].amountRest)}</span></p>}
             </Card>
           )}
           <div className="grid grid-cols-2 gap-4">
@@ -150,7 +150,7 @@ export default function Payments() {
         {viewItem && (
           <div className="space-y-2">
             <div className="rounded-xl overflow-hidden mb-2"><CarImage images={viewItem.car?.images} heightClass="h-36" /></div>
-            {Object.entries({ [t("common.vehicle")]: `${viewItem.car?.brand} ${viewItem.car?.model}`, [t("car.plate")]: viewItem.car?.plate, [t("common.client")]: `${viewItem.client?.firstName} ${viewItem.client?.lastName}`, [t("common.amount")]: formatAmount(viewItem.amount), [t("common.date")]: formatDate(viewItem.date), [t("common.description")]: viewItem.description }).map(([k, v]) => <div key={k} className="flex justify-between text-sm border-b border-red-600/10 py-1.5"><span className="text-text-muted">{k}</span><span className="text-text-primary">{v || "—"}</span></div>)}
+            {Object.entries({ [t("common.vehicle")]: `${viewItem.car?.brand} ${viewItem.car?.model}`, [t("car.plate")]: viewItem.car?.plate, [t("common.client")]: `${viewItem.client?.firstName} ${viewItem.client?.lastName}`, [t("common.amount")]: formatAmount(viewItem.amount), [t("common.date")]: formatDate(viewItem.date), [t("common.description")]: viewItem.description }).map(([k, v]) => <div key={k} className="flex justify-between text-sm border-b border-silver-500/12 py-1.5"><span className="text-text-muted">{k}</span><span className="text-text-primary">{v || "—"}</span></div>)}
             <button className="btn-ghost w-full mt-2" onClick={() => doPrint(viewItem)}><Printer size={14} /> {t("common.print")}</button>
           </div>
         )}

@@ -43,7 +43,7 @@ export default function Expenses() {
           <button className={`chip ${tab === "CAR" ? "chip-active" : ""}`} onClick={() => setTab("CAR")}><Car size={13} /> Véhicules</button>
           <button className={`chip ${tab === "SHOWROOM" ? "chip-active" : ""}`} onClick={() => setTab("SHOWROOM")}><Building2 size={13} /> Showroom</button>
         </div>
-        <Card className="px-4 py-2"><span className="label-caps !mb-0">Total : </span><span className="text-amber-400 font-black">{formatAmount(total)}</span></Card>
+        <Card className="px-4 py-2"><span className="label-caps !mb-0">Total : </span><span className="text-[#DDAE6A] font-black">{formatAmount(total)}</span></Card>
       </div>
 
       {loading ? <SkeletonGrid /> : expenses?.length === 0 ? (
@@ -62,11 +62,11 @@ export default function Expenses() {
                   </div>
                   <div className="flex gap-1 shrink-0">
                     {can("expenses", "edit") && <button className="text-text-muted hover:text-text-primary" onClick={() => openEdit(e)}><Pencil size={15} /></button>}
-                    {can("expenses", "delete") && <button className="text-text-muted hover:text-rose-400" onClick={() => setDeleteId(e.id)}><Trash2 size={15} /></button>}
+                    {can("expenses", "delete") && <button className="text-text-muted hover:text-crimson-300" onClick={() => setDeleteId(e.id)}><Trash2 size={15} /></button>}
                   </div>
                 </div>
                 <div className="flex justify-between items-end mt-2">
-                  <span className="text-lg font-black text-amber-400">{formatAmount(e.amount)}</span>
+                  <span className="text-lg font-black text-[#DDAE6A]">{formatAmount(e.amount)}</span>
                   <span className="text-xs text-text-muted">{formatDate(e.date)}</span>
                 </div>
               </div>

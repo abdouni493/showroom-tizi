@@ -9,15 +9,15 @@ import AnimatedLogo from "../components/AnimatedLogo.jsx";
 function GlowBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full bg-red-600/30 blur-[120px] animate-float1" />
-      <div className="absolute top-1/3 -right-40 w-[470px] h-[470px] rounded-full bg-red-900/25 blur-[120px] animate-float2" />
-      <div className="absolute -bottom-40 left-1/4 w-[420px] h-[420px] rounded-full bg-red-500/20 blur-[120px] animate-float3" />
-      <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-[300px] h-[300px] rounded-full bg-red-800/10 blur-[80px] animate-float1" />
+      <div className="absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full bg-[#9CA8B1]/14 blur-[120px] animate-float1" />
+      <div className="absolute top-1/3 -right-40 w-[470px] h-[470px] rounded-full bg-[#9B302B]/16 blur-[120px] animate-float2" />
+      <div className="absolute -bottom-40 left-1/4 w-[420px] h-[420px] rounded-full bg-[#78828C]/12 blur-[120px] animate-float3" />
+      <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-[300px] h-[300px] rounded-full bg-[#6C2826]/14 blur-[80px] animate-float1" />
       <div
         className="absolute inset-0"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(220,38,38,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(220,38,38,0.04) 1px, transparent 1px)",
+            "linear-gradient(rgba(153,161,169,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(153,161,169,0.045) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
         }}
       />
@@ -98,7 +98,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center relative px-4">
+    <div className="min-h-screen bg-transparent flex items-center justify-center relative px-4">
       <GlowBackground />
 
       {/* Top bar */}
@@ -119,10 +119,10 @@ export default function Login() {
       <motion.div
         className="relative z-10 w-full max-w-[420px] p-8 rounded-panel"
         style={{
-          background: "rgba(15,2,2,0.92)",
-          border: "1px solid rgba(220,38,38,0.45)",
+          background: "rgba(46,51,58,0.78)",
+          border: "1px solid rgba(153,161,169,0.20)",
           backdropFilter: "blur(24px)",
-          boxShadow: "0 0 80px rgba(220,38,38,0.15)",
+          boxShadow: "0 24px 60px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.08)",
         }}
         initial={{ opacity: 0, scale: 0.94, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -158,37 +158,37 @@ export default function Login() {
               transition={{ duration: 0.2 }}
             >
               <motion.div {...fieldAnim(0.7)}>
-                <label className="label-caps text-red-400/80">{t("login.email")}</label>
+                <label className="label-caps text-crimson-300/80">{t("login.email")}</label>
                 <div className="relative">
-                  <Mail className="absolute left-3 rtl:left-auto rtl:right-3 top-1/2 -translate-y-1/2 text-red-500/70" size={16} />
+                  <Mail className="absolute left-3 rtl:left-auto rtl:right-3 top-1/2 -translate-y-1/2 text-silver-500" size={16} />
                   <input className="input pl-10 rtl:pl-3 rtl:pr-10" type="text" placeholder="exemple@showroom.dz" value={email} onChange={(e) => setEmail(e.target.value)} required />
                 </div>
               </motion.div>
               <motion.div {...fieldAnim(0.78)}>
-                <label className="label-caps text-red-400/80">{t("login.password")}</label>
+                <label className="label-caps text-crimson-300/80">{t("login.password")}</label>
                 <div className="relative">
-                  <Lock className="absolute left-3 rtl:left-auto rtl:right-3 top-1/2 -translate-y-1/2 text-red-500/70" size={16} />
+                  <Lock className="absolute left-3 rtl:left-auto rtl:right-3 top-1/2 -translate-y-1/2 text-silver-500" size={16} />
                   <input className="input pl-10 rtl:pl-3 rtl:pr-10" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required />
                 </div>
               </motion.div>
 
-              {error && <p className="text-rose-400 text-sm text-center">{error}</p>}
+              {error && <p className="text-crimson-300 text-sm text-center">{error}</p>}
 
               <motion.button
                 type="submit"
                 disabled={loading}
                 className="btn-primary w-full shine-btn"
                 {...fieldAnim(0.86)}
-                whileHover={{ scale: 1.02, boxShadow: "0 8px 40px rgba(220,38,38,0.55)" }}
+                whileHover={{ scale: 1.02, boxShadow: "0 8px 40px rgba(155,48,43,0.55)" }}
                 whileTap={{ scale: 0.97 }}
               >
                 {loading ? "..." : t("login.submit")}
               </motion.button>
 
               <motion.div className="flex items-center gap-3 pt-1" {...fieldAnim(0.92)}>
-                <div className="flex-1 h-px bg-red-600/20" />
+                <div className="flex-1 h-px bg-silver-500/16" />
                 <span className="text-[0.6rem] text-text-muted uppercase tracking-[0.2em]">{t("login.or")}</span>
-                <div className="flex-1 h-px bg-red-600/20" />
+                <div className="flex-1 h-px bg-silver-500/16" />
               </motion.div>
             </motion.form>
           ) : (
@@ -202,48 +202,48 @@ export default function Login() {
               transition={{ duration: 0.2 }}
             >
               <div>
-                <label className="label-caps text-red-400/80">{t("login.fullName")}</label>
+                <label className="label-caps text-crimson-300/80">{t("login.fullName")}</label>
                 <div className="relative">
-                  <User className="absolute left-3 rtl:left-auto rtl:right-3 top-1/2 -translate-y-1/2 text-red-500/70" size={16} />
+                  <User className="absolute left-3 rtl:left-auto rtl:right-3 top-1/2 -translate-y-1/2 text-silver-500" size={16} />
                   <input className="input pl-10 rtl:pl-3 rtl:pr-10" type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} required />
                 </div>
               </div>
               <div>
-                <label className="label-caps text-red-400/80">{t("login.username")}</label>
+                <label className="label-caps text-crimson-300/80">{t("login.username")}</label>
                 <div className="relative">
-                  <AtSign className="absolute left-3 rtl:left-auto rtl:right-3 top-1/2 -translate-y-1/2 text-red-500/70" size={16} />
+                  <AtSign className="absolute left-3 rtl:left-auto rtl:right-3 top-1/2 -translate-y-1/2 text-silver-500" size={16} />
                   <input className="input pl-10 rtl:pl-3 rtl:pr-10" type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
                 </div>
               </div>
               <div>
-                <label className="label-caps text-red-400/80">{t("login.email")}</label>
+                <label className="label-caps text-crimson-300/80">{t("login.email")}</label>
                 <div className="relative">
-                  <Mail className="absolute left-3 rtl:left-auto rtl:right-3 top-1/2 -translate-y-1/2 text-red-500/70" size={16} />
+                  <Mail className="absolute left-3 rtl:left-auto rtl:right-3 top-1/2 -translate-y-1/2 text-silver-500" size={16} />
                   <input className="input pl-10 rtl:pl-3 rtl:pr-10" type="email" placeholder="admin@showroom.dz" value={email} onChange={(e) => setEmail(e.target.value)} required />
                 </div>
               </div>
               <div>
-                <label className="label-caps text-red-400/80">{t("login.password")}</label>
+                <label className="label-caps text-crimson-300/80">{t("login.password")}</label>
                 <div className="relative">
-                  <Lock className="absolute left-3 rtl:left-auto rtl:right-3 top-1/2 -translate-y-1/2 text-red-500/70" size={16} />
+                  <Lock className="absolute left-3 rtl:left-auto rtl:right-3 top-1/2 -translate-y-1/2 text-silver-500" size={16} />
                   <input className="input pl-10 rtl:pl-3 rtl:pr-10" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} minLength={6} required />
                 </div>
               </div>
               <div>
-                <label className="label-caps text-red-400/80">{t("login.confirmPassword")}</label>
+                <label className="label-caps text-crimson-300/80">{t("login.confirmPassword")}</label>
                 <div className="relative">
-                  <Lock className="absolute left-3 rtl:left-auto rtl:right-3 top-1/2 -translate-y-1/2 text-red-500/70" size={16} />
+                  <Lock className="absolute left-3 rtl:left-auto rtl:right-3 top-1/2 -translate-y-1/2 text-silver-500" size={16} />
                   <input className="input pl-10 rtl:pl-3 rtl:pr-10" type="password" placeholder="••••••••" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} minLength={6} required />
                 </div>
               </div>
 
-              {error && <p className="text-rose-400 text-sm text-center">{error}</p>}
+              {error && <p className="text-crimson-300 text-sm text-center">{error}</p>}
 
               <motion.button
                 type="submit"
                 disabled={loading}
                 className="btn-primary w-full shine-btn"
-                whileHover={{ scale: 1.02, boxShadow: "0 8px 40px rgba(220,38,38,0.55)" }}
+                whileHover={{ scale: 1.02, boxShadow: "0 8px 40px rgba(155,48,43,0.55)" }}
                 whileTap={{ scale: 0.97 }}
               >
                 {loading ? "..." : t("login.register")}
